@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 12:40 PM CT",
+  updated: "Aug 22, 12:50 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -62,7 +62,7 @@ const DATA = {
         { player:"Javonte Williams", pos:"RB", nfl:"DAL", round:8,  bumped:false, discount:true  }, // drafted R8 2025 by Josh J. ECR R4 -> 4-rd discount
         { player:"Alec Pierce",      pos:"WR", nfl:"IND", round:16, bumped:false, discount:true  }  // UNDRAFTED 2025 -> last pick R16. ECR R9 -> 7-rd discount
       ]},
-    { id:"rd", name:"Rainbow Pride", owner:"Reid Farmer", slot:null, paid:false, insurance:false, carryover:15,
+    { id:"rd", name:"Rainbow Pride", owner:"Reid Farmer", slot:2, paid:false, insurance:false, carryover:15,
       keepers:[
         { player:"Chase Brown",  pos:"RB", nfl:"CIN", round:2, bumped:false, discount:false }, // kept 2025 by Reid -> ECR 15 = R2
         { player:"Brock Bowers", pos:"TE", nfl:"LV",  round:3, bumped:true,  discount:false }, // kept 2025 by Reid -> ECR 16 = R2, bumped off Chase Brown
