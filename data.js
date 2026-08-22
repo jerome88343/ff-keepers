@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 2:50 PM CT",
+  updated: "Aug 22, 3:00 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -42,7 +42,7 @@ const DATA = {
         { player:"Malik Nabers",      pos:"WR", nfl:"NYG", round:3,  bumped:true,  origin:2,  discount:false }, // kept 2025 by Phil -> ECR 24 = R2, bumped to R3 by Taylor
         { player:"Luther Burden III", pos:"WR", nfl:"CHI", round:11, bumped:false, discount:true  }  // drafted R11 2025 by Chris -> R11, 7-rd discount
       ]},
-    { id:"jn", name:"My Couch Pulls Out, But I Don't.", owner:"Jason Brownlee", slot:null, paid:false, insurance:true, carryover:0,
+    { id:"jn", name:"My Couch Pulls Out, But I Don't.", owner:"Jason Brownlee", slot:8, paid:false, insurance:true, carryover:0,
       keepers:[
         { player:"Bijan Robinson",     pos:"RB", nfl:"ATL", round:1, bumped:false, discount:false }, // kept 2025 by Jason -> ECR 4 = R1
         { player:"Amon-Ra St. Brown",  pos:"WR", nfl:"DET", round:2, bumped:true,  origin:1,  discount:false }, // kept 2025 by Jason -> ECR 6 = R1, bumped off Bijan
