@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 10:55 AM CT",
+  updated: "Aug 22, 11:00 AM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -58,7 +58,7 @@ const DATA = {
       ]},
     { id:"rd",      name:"Rainbow Pride",         owner:"Reid Farmer",        slot:null, paid:false, insurance:false, keepers:[] },
     { id:"tf",      name:"Alphabet Army",         owner:"Travis Farmer", slot:null, paid:false, insurance:false, keepers:[] },
-    { id:"ry",      name:"Tee Diddy And The Didlers", owner:"Ryan",    slot:null, paid:false, insurance:false, keepers:[] },
+    { id:"ry",      name:"Tee Diddy And The Didlers", owner:"Ryan Anderson",    slot:null, paid:false, insurance:false, keepers:[] },
     { id:"tv",      name:"Perennial Losers",      owner:"Travis Briar", slot:null, paid:false, insurance:false, keepers:[] },
     { id:"jl",      name:"$Test Tube Daddy$",     owner:"Josh Lennon",      slot:null, paid:false, insurance:false, keepers:[] },
     { id:"ju",      name:"Collusion",             owner:"Justin Bjorgo",      slot:null, paid:false, insurance:false, keepers:[] }
