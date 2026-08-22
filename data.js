@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 2:35 PM CT",
+  updated: "Aug 22, 2:40 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -71,7 +71,7 @@ const DATA = {
         { player:"Tyler Warren", pos:"TE", nfl:"IND", round:6, bumped:true,  origin:5,  discount:false }  // drafted R4 2025 by Reid; ECR 52 = R5, bumped off DJ Moore
       ]},
     { id:"tf",      name:"Alphabet Army",         owner:"Travis Farmer", slot:10, paid:false, insurance:false, carryover:8, keepers:[] },
-    { id:"ry", name:"Tee Diddy And The Didlers", owner:"Ryan Anderson", slot:null, paid:false, insurance:true, carryover:150,
+    { id:"ry", name:"Tee Diddy And The Didlers", owner:"Ryan Anderson", slot:9, paid:false, insurance:true, carryover:150,
       keepers:[
         { player:"Drake London",   pos:"WR", nfl:"ATL", round:1, bumped:false, discount:false }, // kept 2025 by Ryan -> ECR 10 = R1
         { player:"Saquon Barkley", pos:"RB", nfl:"PHI", round:3, bumped:false, discount:false }, // kept 2025 by Ryan -> ECR 26 = R3
