@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 4:40 PM CT",
+  updated: "Aug 22, 5:00 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -85,7 +85,7 @@ const DATA = {
         { player:"Quinshon Judkins",    pos:"RB", nfl:"CLE", round:7,  bumped:false, discount:true  }, // drafted R7 2025 by Josh Lennon. ECR R6 -> 1-rd discount
         { player:"Colston Loveland",    pos:"TE", nfl:"CHI", round:11, bumped:false, discount:true  }  // drafted R11 2025 by Briar. ECR R4 -> 7-rd discount
       ]},
-    { id:"jl", name:"$Test Tube Daddy$", owner:"Josh Lennon", slot:null, paid:false, insurance:false, carryover:30,
+    { id:"jl", name:"$Test Tube Daddy$", owner:"Josh Lennon", slot:6, paid:false, insurance:false, carryover:30,
       keepers:[
         { player:"CeeDee Lamb",   pos:"WR", nfl:"DAL", round:1, bumped:false, discount:false }, // kept 2025 -> ECR 7 = R1
         { player:"De'Von Achane", pos:"RB", nfl:"MIA", round:2, bumped:false, discount:false }, // kept 2025 -> ECR 21 = R2
