@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 12:15 PM CT",
+  updated: "Aug 22, 12:40 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -48,7 +48,13 @@ const DATA = {
         { player:"Kenneth Walker III", pos:"RB", nfl:"SEA", round:3, bumped:false, discount:false }, // kept 2025 by Jeremy -> ECR 28 = R3
         { player:"Chris Olave",        pos:"WR", nfl:"NO",  round:7, bumped:false, discount:true  }  // drafted R7 2025 by Jason -> R7, 5-rd discount
       ]},
-    { id:"cd_chad", name:"LaFlama Blanca",        owner:"Chad Nicols",        slot:1, paid:false, insurance:false, carryover:15, keepers:[] },
+    { id:"cd_chad", name:"LaFlama Blanca", owner:"Chad Nicols", slot:1, paid:false, insurance:false, carryover:15,
+      keepers:[
+        { player:"Derrick Henry", pos:"RB", nfl:"BAL", round:3, bumped:false, discount:false }, // drafted R3 2025 by Jeremy; ECR 36 = R3
+        { player:"Josh Jacobs",   pos:"RB", nfl:"GB",  round:4, bumped:false, discount:false }, // Chad's own R3 2025; ECR 44 = R4 cheaper
+        { player:"Zay Flowers",   pos:"WR", nfl:"BAL", round:5, bumped:false, discount:true  }, // drafted R5 2025 by Chad. ECR R3 -> 2-rd discount
+        { player:"Rome Odunze",   pos:"WR", nfl:"CHI", round:6, bumped:false, discount:true  }  // DISPUTED: Chad said 8th. Board = R6 2025 by Josh Lennon; ECR R5. Cheapest legal R6
+      ]},
     { id:"jj", name:"Bearded Clams", owner:"Josh James", slot:11, paid:false, insurance:false, carryover:16,
       keepers:[
         { player:"A.J. Brown",       pos:"WR", nfl:"NE",  round:1,  bumped:false, discount:false }, // kept 2025 by Josh J -> ECR 12 = R1
@@ -56,7 +62,13 @@ const DATA = {
         { player:"Javonte Williams", pos:"RB", nfl:"DAL", round:8,  bumped:false, discount:true  }, // drafted R8 2025 by Josh J. ECR R4 -> 4-rd discount
         { player:"Alec Pierce",      pos:"WR", nfl:"IND", round:16, bumped:false, discount:true  }  // UNDRAFTED 2025 -> last pick R16. ECR R9 -> 7-rd discount
       ]},
-    { id:"rd",      name:"Rainbow Pride",         owner:"Reid Farmer",        slot:null, paid:false, insurance:false, carryover:15, keepers:[] },
+    { id:"rd", name:"Rainbow Pride", owner:"Reid Farmer", slot:null, paid:false, insurance:false, carryover:15,
+      keepers:[
+        { player:"Chase Brown",  pos:"RB", nfl:"CIN", round:2, bumped:false, discount:false }, // kept 2025 by Reid -> ECR 15 = R2
+        { player:"Brock Bowers", pos:"TE", nfl:"LV",  round:3, bumped:true,  discount:false }, // kept 2025 by Reid -> ECR 16 = R2, bumped off Chase Brown
+        { player:"DJ Moore",     pos:"WR", nfl:"BUF", round:5, bumped:false, discount:false }, // drafted R4 2025 by Josh James; ECR 50 = R5 cheaper
+        { player:"Tyler Warren", pos:"TE", nfl:"IND", round:6, bumped:true,  discount:false }  // drafted R4 2025 by Reid; ECR 52 = R5, bumped off DJ Moore
+      ]},
     { id:"tf",      name:"Alphabet Army",         owner:"Travis Farmer", slot:null, paid:false, insurance:false, carryover:8, keepers:[] },
     { id:"ry",      name:"Tee Diddy And The Didlers", owner:"Ryan Anderson",    slot:null, paid:false, insurance:false, carryover:150, keepers:[] },
     { id:"tv",      name:"Perennial Losers",      owner:"Travis Briar", slot:null, paid:false, insurance:false, carryover:98, keepers:[] },
