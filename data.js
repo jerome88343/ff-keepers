@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 10:20 AM CT",
+  updated: "Aug 22, 10:45 AM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -22,7 +22,7 @@ const DATA = {
   teams: [
     { id:"jb", name:"Jerome Mahomes", owner:"Jeremy", slot:null, paid:false, insurance:true,
       keepers:[
-        { player:"Jaxon Smith-Njigba", pos:"WR", nfl:"SEA", round:1,  bumped:false, discount:false }, // 2025: KEPT by Travis B -> counts at ECR 5 = R1
+        { player:"Jaxon Smith-Njigba", pos:"WR", nfl:"SEA", round:1,  bumped:false, discount:false }, // 2025: KEPT by Travis Breyer (Perennial Losers) -> counts at ECR 5 = R1
         { player:"Rashee Rice",        pos:"WR", nfl:"KC",  round:2,  bumped:false, discount:false }, // 2025: KEPT by Jeremy -> counts at ECR 22 = R2
         { player:"Travis Etienne Jr.", pos:"RB", nfl:"NO",  round:6,  bumped:false, discount:true  }, // 2025: drafted R6 by Phil. ECR R4 -> 2-rd discount
         { player:"David Montgomery",   pos:"RB", nfl:"HOU", round:7,  bumped:true,  discount:false }  // drafted R5 by Jason / ECR R6 -> takes cheaper R6, collides with Etienne, bumped to R7
@@ -57,9 +57,9 @@ const DATA = {
         { player:"Alec Pierce",      pos:"WR", nfl:"IND", round:16, bumped:false, discount:true  }  // UNDRAFTED 2025 -> last pick R16. ECR R9 -> 7-rd discount
       ]},
     { id:"rd",      name:"Rainbow Pride",         owner:"Reid",        slot:null, paid:false, insurance:false, keepers:[] },
-    { id:"tf",      name:"Perennial Losers",      owner:"T Farm",      slot:null, paid:false, insurance:false, keepers:[] },
+    { id:"tf",      name:"Alphabet Army",         owner:"Travis Farmer", slot:null, paid:false, insurance:false, keepers:[] },
     { id:"ry",      name:"Tee Diddy And The Didlers", owner:"Ryan",    slot:null, paid:false, insurance:false, keepers:[] },
-    { id:"tv",      name:"Alphabet Army",         owner:"Travis",      slot:null, paid:false, insurance:false, keepers:[] },
+    { id:"tv",      name:"Perennial Losers",      owner:"Travis Breyer", slot:null, paid:false, insurance:false, keepers:[] },
     { id:"jl",      name:"$Test Tube Daddy$",     owner:"Lennon",      slot:null, paid:false, insurance:false, keepers:[] },
     { id:"ju",      name:"Collusion",             owner:"Bjorgo",      slot:null, paid:false, insurance:false, keepers:[] }
   ]
