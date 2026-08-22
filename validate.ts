@@ -53,7 +53,7 @@ for (const t of D.teams) {
     const er = ecrRound(rank);
     if (k.bumped) { const o=(D.taxAtOrigin && k.origin)?k.origin:k.round; notes.push(`${k.player}: ECR ${rank} (R${er}) → counts R${o}, bumped to R${k.round}, tax $${tax(o)}`); continue; }
     if (k.round > er) { discounts++; notes.push(`${k.player}: ECR ${rank} (R${er}) → kept R${k.round}, DISCOUNT ${k.round - er}`); }
-    else if (k.round < er) problems.push(`${k.player}: kept R${k.round} but ECR is R${er} — ECR is cheaper, take R${er}`);
+    else if (k.round < er) notes.push(`${k.player}: ECR ${rank} (R${er}) → kept R${k.round}, PAYING UP ${er - k.round} round(s) above ECR (legal; usually done to clear a round collision)`);
     else notes.push(`${k.player}: ECR ${rank} (R${er}) → kept R${k.round}, exact`);
   }
   if (discounts > MAX_DISCOUNTS) problems.push(`${discounts} discount keepers, max is ${MAX_DISCOUNTS}`);
