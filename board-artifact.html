@@ -214,7 +214,13 @@ const DATA = {
         { player:"George Kittle", pos:"TE", nfl:"SF",  round:8, bumped:false, discount:false }, // kept 2025 -> ECR 96 = R8
         { player:"Dak Prescott",  pos:"QB", nfl:"DAL", round:9, bumped:false, discount:true  }  // drafted R9 2025 by Jeremy. ECR R7 -> 2-rd discount
       ]},
-    { id:"ju",      name:"Collusion",             owner:"Justin Bjorgo",      slot:null, paid:false, insurance:false, carryover:194, keepers:[] }
+    { id:"ju", name:"Collusion", owner:"Justin Bjorgo", slot:null, paid:false, insurance:false, carryover:194,
+      keepers:[
+        { player:"Ashton Jeanty",     pos:"RB", nfl:"LV",  round:1, bumped:false, discount:false }, // drafted R1 2025 by Justin; takes drafted round to clear the R2 pileup
+        { player:"James Cook III",    pos:"RB", nfl:"BUF", round:2, bumped:false, discount:false }, // kept 2025 by Justin -> ECR 17 = R2
+        { player:"Tetairoa McMillan", pos:"WR", nfl:"CAR", round:3, bumped:false, discount:false }, // drafted R2 2025 by Justin; ECR 32 = R3
+        { player:"Ladd McConkey",     pos:"WR", nfl:"LAC", round:4, bumped:true,  origin:3, discount:false } // kept 2025 -> ECR 34 = R3, bumped off McMillan
+      ]}
   ]
 };
 
