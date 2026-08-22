@@ -53,7 +53,7 @@ for (const t of D.teams) {
     const er = ecrRound(rank);
     if (k.bumped) { notes.push(`${k.player}: ECR ${rank} (R${er}) → kept R${k.round}, bumped`); continue; }
     if (k.round > er) { discounts++; notes.push(`${k.player}: ECR ${rank} (R${er}) → kept R${k.round}, DISCOUNT ${k.round - er}`); }
-    else if (k.round < er) problems.push(`${k.player}: kept R${k.round} but ECR is R${er} — costs MORE than ECR, check origin`);
+    else if (k.round < er) problems.push(`${k.player}: kept R${k.round} but ECR is R${er} — ECR is cheaper, take R${er}`);
     else notes.push(`${k.player}: ECR ${rank} (R${er}) → kept R${k.round}, exact`);
   }
   if (discounts > MAX_DISCOUNTS) problems.push(`${discounts} discount keepers, max is ${MAX_DISCOUNTS}`);
