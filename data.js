@@ -5,12 +5,13 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 12:50 PM CT",
+  updated: "Aug 22, 1:05 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
-  ratesPending: true,                                   // A/B vote not settled
-  taxLadder: { 1:20, 2:18, 3:16, 4:14, 5:12, 6:10, 7:8, 8:8 },  // Option B shown
+  ratesPending: false,   // Option B ratified by league vote
+  taxLadder: { 1:20, 2:18, 3:16, 4:14, 5:12, 6:10, 7:8, 8:8 },  // Option B, ratified
+  taxAtOrigin: true,     // tax charged at the round the player ORIGINALLY counts as, not where he lands
   insuranceFee: 15,
   feesIntoPot: true,
 
@@ -25,7 +26,7 @@ const DATA = {
         { player:"Jaxon Smith-Njigba", pos:"WR", nfl:"SEA", round:1,  bumped:false, discount:false }, // 2025: KEPT by Travis Briar (Perennial Losers) -> counts at ECR 5 = R1
         { player:"Rashee Rice",        pos:"WR", nfl:"KC",  round:2,  bumped:false, discount:false }, // 2025: KEPT by Jeremy -> counts at ECR 22 = R2
         { player:"Travis Etienne Jr.", pos:"RB", nfl:"NO",  round:6,  bumped:false, discount:true  }, // 2025: drafted R6 by Phil. ECR R4 -> 2-rd discount
-        { player:"David Montgomery",   pos:"RB", nfl:"HOU", round:7,  bumped:true,  discount:false }  // drafted R5 by Jason / ECR R6 -> takes cheaper R6, collides with Etienne, bumped to R7
+        { player:"David Montgomery",   pos:"RB", nfl:"HOU", round:7,  bumped:true,  origin:6,  discount:false }  // drafted R5 by Jason / ECR R6 -> takes cheaper R6, collides with Etienne, bumped to R7
       ]},
     { id:"cd", name:"Pink Taco Pluggers", owner:"Chris Drake", slot:null, paid:false, insurance:false, carryover:55,
       keepers:[
@@ -37,14 +38,14 @@ const DATA = {
     { id:"pa", name:"Phildo's Dildos", owner:"Phil Arreguin", slot:12, paid:false, insurance:true, carryover:70,
       keepers:[
         { player:"Puka Nacua",        pos:"WR", nfl:"LAR", round:1,  bumped:false, discount:false }, // kept 2025 by Phil -> ECR 3 = R1
-        { player:"Jonathan Taylor",   pos:"RB", nfl:"IND", round:2,  bumped:true,  discount:false }, // kept 2025 by Phil -> ECR 11 = R1, bumped to R2
-        { player:"Malik Nabers",      pos:"WR", nfl:"NYG", round:3,  bumped:true,  discount:false }, // kept 2025 by Phil -> ECR 24 = R2, bumped to R3 by Taylor
+        { player:"Jonathan Taylor",   pos:"RB", nfl:"IND", round:2,  bumped:true,  origin:1,  discount:false }, // kept 2025 by Phil -> ECR 11 = R1, bumped to R2
+        { player:"Malik Nabers",      pos:"WR", nfl:"NYG", round:3,  bumped:true,  origin:2,  discount:false }, // kept 2025 by Phil -> ECR 24 = R2, bumped to R3 by Taylor
         { player:"Luther Burden III", pos:"WR", nfl:"CHI", round:11, bumped:false, discount:true  }  // drafted R11 2025 by Chris -> R11, 7-rd discount
       ]},
     { id:"jn", name:"My Couch Pulls Out, But I Don't.", owner:"Jason Brownlee", slot:null, paid:false, insurance:true, carryover:0,
       keepers:[
         { player:"Bijan Robinson",     pos:"RB", nfl:"ATL", round:1, bumped:false, discount:false }, // kept 2025 by Jason -> ECR 4 = R1
-        { player:"Amon-Ra St. Brown",  pos:"WR", nfl:"DET", round:2, bumped:true,  discount:false }, // kept 2025 by Jason -> ECR 6 = R1, bumped off Bijan
+        { player:"Amon-Ra St. Brown",  pos:"WR", nfl:"DET", round:2, bumped:true,  origin:1,  discount:false }, // kept 2025 by Jason -> ECR 6 = R1, bumped off Bijan
         { player:"Kenneth Walker III", pos:"RB", nfl:"SEA", round:3, bumped:false, discount:false }, // kept 2025 by Jeremy -> ECR 28 = R3
         { player:"Chris Olave",        pos:"WR", nfl:"NO",  round:7, bumped:false, discount:true  }  // drafted R7 2025 by Jason -> R7, 5-rd discount
       ]},
@@ -65,9 +66,9 @@ const DATA = {
     { id:"rd", name:"Rainbow Pride", owner:"Reid Farmer", slot:2, paid:false, insurance:false, carryover:15,
       keepers:[
         { player:"Chase Brown",  pos:"RB", nfl:"CIN", round:2, bumped:false, discount:false }, // kept 2025 by Reid -> ECR 15 = R2
-        { player:"Brock Bowers", pos:"TE", nfl:"LV",  round:3, bumped:true,  discount:false }, // kept 2025 by Reid -> ECR 16 = R2, bumped off Chase Brown
+        { player:"Brock Bowers", pos:"TE", nfl:"LV",  round:3, bumped:true,  origin:2,  discount:false }, // kept 2025 by Reid -> ECR 16 = R2, bumped off Chase Brown
         { player:"DJ Moore",     pos:"WR", nfl:"BUF", round:5, bumped:false, discount:false }, // drafted R4 2025 by Josh James; ECR 50 = R5 cheaper
-        { player:"Tyler Warren", pos:"TE", nfl:"IND", round:6, bumped:true,  discount:false }  // drafted R4 2025 by Reid; ECR 52 = R5, bumped off DJ Moore
+        { player:"Tyler Warren", pos:"TE", nfl:"IND", round:6, bumped:true,  origin:5,  discount:false }  // drafted R4 2025 by Reid; ECR 52 = R5, bumped off DJ Moore
       ]},
     { id:"tf",      name:"Alphabet Army",         owner:"Travis Farmer", slot:null, paid:false, insurance:false, carryover:8, keepers:[] },
     { id:"ry",      name:"Tee Diddy And The Didlers", owner:"Ryan Anderson",    slot:null, paid:false, insurance:false, carryover:150, keepers:[] },

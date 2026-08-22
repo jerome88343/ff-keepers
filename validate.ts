@@ -51,7 +51,7 @@ for (const t of D.teams) {
     const rank = rankOf(k.player);
     if (rank === null) { notes.push(`${k.player}: not in top 520 ECR, costs R16`); continue; }
     const er = ecrRound(rank);
-    if (k.bumped) { notes.push(`${k.player}: ECR ${rank} (R${er}) → kept R${k.round}, bumped`); continue; }
+    if (k.bumped) { const o=(D.taxAtOrigin && k.origin)?k.origin:k.round; notes.push(`${k.player}: ECR ${rank} (R${er}) → counts R${o}, bumped to R${k.round}, tax $${tax(o)}`); continue; }
     if (k.round > er) { discounts++; notes.push(`${k.player}: ECR ${rank} (R${er}) → kept R${k.round}, DISCOUNT ${k.round - er}`); }
     else if (k.round < er) problems.push(`${k.player}: kept R${k.round} but ECR is R${er} — ECR is cheaper, take R${er}`);
     else notes.push(`${k.player}: ECR ${rank} (R${er}) → kept R${k.round}, exact`);
@@ -59,8 +59,9 @@ for (const t of D.teams) {
   if (discounts > MAX_DISCOUNTS) problems.push(`${discounts} discount keepers, max is ${MAX_DISCOUNTS}`);
 
   const bumps = t.keepers.filter((k: any) => k.bumped);
-  const taxOwed = bumps.reduce((s: number, k: any) => s + tax(k.round), 0);
+  const taxOwed = bumps.reduce((s: number, k: any) => s + tax((D.taxAtOrigin && k.origin) ? k.origin : k.round), 0);
   const ins = t.insurance ? D.insuranceFee : 0;
+  const cred = t.carryover || 0;
   potTax += taxOwed; potIns += ins; if (t.paid) potBuy += D.buyIn;
 
   console.log(`\n=== ${t.name} (${t.owner || "?"}) ${t.slot ? "· slot " + t.slot : "· no slot yet"}`);
@@ -68,8 +69,9 @@ for (const t of D.teams) {
   if (problems.length) { console.log("   !! ILLEGAL"); problems.forEach(p => console.log("      - " + p)); }
   else console.log(`   LEGAL — ${t.keepers.length}/4 keepers, ${discounts}/${MAX_DISCOUNTS} discounts, ` +
     Object.entries(byPos).map(([p, n]) => `${n}${p}`).join(" "));
-  console.log(`   owes $${D.buyIn + taxOwed + ins}  ($${D.buyIn} buy-in` +
-    (taxOwed ? ` + $${taxOwed} tax` : "") + (ins ? ` + $${ins} insurance` : "") + ")");
+  console.log(`   owes $${D.buyIn + taxOwed + ins - cred}  ($${D.buyIn} buy-in` +
+    (taxOwed ? ` + $${taxOwed} tax` : "") + (ins ? ` + $${ins} insurance` : "") +
+    (cred ? ` - $${cred} holdback` : "") + ")");
 }
 
 if (!only) {

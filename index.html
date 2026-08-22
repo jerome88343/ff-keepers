@@ -124,7 +124,8 @@ document.getElementById('upd').textContent=DATA.updated;
 
 // ---------- POT ----------
 const tax=r=>DATA.taxLadder[Math.min(r,8)]||DATA.taxLadder[8];
-const taxFor=t=>(t.keepers||[]).filter(k=>k.bumped).reduce((s,k)=>s+tax(k.round),0);
+const taxRd=k=>(DATA.taxAtOrigin && k.origin) ? k.origin : k.round;
+const taxFor=t=>(t.keepers||[]).filter(k=>k.bumped).reduce((s,k)=>s+tax(taxRd(k)),0);
 const insFor=t=>(t.insurance?DATA.insuranceFee:0);
 const creditFor=t=>(t.carryover||0);
 const owedFor=t=>DATA.buyIn + taxFor(t) + insFor(t) - creditFor(t);
@@ -132,7 +133,7 @@ const owedFor=t=>DATA.buyIn + taxFor(t) + insFor(t) - creditFor(t);
 const declaredCt=T.filter(t=>(t.keepers||[]).length>0).length;
 const paidCt=T.filter(t=>t.paid).length;
 let bumpCt=0,taxTotal=0;
-T.forEach(t=>(t.keepers||[]).forEach(k=>{if(k.bumped){bumpCt++;taxTotal+=tax(k.round);}}));
+T.forEach(t=>(t.keepers||[]).forEach(k=>{if(k.bumped){bumpCt++;taxTotal+=tax(taxRd(k));}}));
 const insCt=T.filter(t=>t.insurance).length, insTotal=insCt*DATA.insuranceFee;
 
 const declaredT = T.filter(t=>(t.keepers||[]).length>0);
@@ -230,7 +231,7 @@ for(let r=1;r<=R;r++){
      bh+='<td class="keeper'+(k.bumped?' bumped':'')+'"><div class="cell">'+
        '<span class="pk">'+label+'</span>'+
        '<span class="nm" style="color:'+posColor(k.pos)+'">'+k.player+'</span>'+
-       '<span class="meta">'+k.pos+(k.nfl?' · '+k.nfl:'')+(k.bumped?' · $'+tax(r):'')+'</span></div></td>';
+       '<span class="meta">'+k.pos+(k.nfl?' · '+k.nfl:'')+(k.bumped?' · $'+tax(taxRd(k)):'')+'</span></div></td>';
    } else {
      bh+='<td><div class="cell"><span class="pk">'+label+'</span></div></td>';
    }
@@ -252,7 +253,7 @@ if(!withK.length){
       (t.slot?'Slot '+t.slot+' · ':'')+(t.owner||'')+'</span></div>'+
       ks.map(k=>'<div class="krow"><span class="pos" style="background:'+posColor(k.pos)+'">'+k.pos+'</span>'+
         '<span class="kn">'+k.player+'</span>'+
-        (k.bumped?'<span class="tax">+$'+tax(k.round)+'</span>':'')+
+        (k.bumped?'<span class="tax">+$'+tax(taxRd(k))+'</span>':'')+
         '<span class="kr">R'+k.round+'</span></div>').join('')+
       '<div class="krow" style="border-top:1px solid var(--line);margin-top:4px"><span class="kn muted" style="font-size:12px">Owes at draft</span>'+
       '<span class="kr" style="color:var(--tx);font-size:14px">'+money(owed)+'</span></div></div>';
