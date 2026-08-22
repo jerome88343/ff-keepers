@@ -144,13 +144,17 @@ const committed = gross;
 const collected = holdbackIn + cashIn;
 const projected = N*DATA.buyIn + taxTotal + insTotal;
 const outstanding = committed - collected;
+const withK2     = declaredT;
+const credTotal  = withK2.reduce((s,t)=>s+creditFor(t),0);          // declared only, matches the rows
+const dueAtDraft = withK2.filter(t=>!t.paid).reduce((s,t)=>s+owedFor(t),0);
 
 document.getElementById('declared').textContent=declaredCt+' of '+N+' teams have declared keepers';
 document.getElementById('ratesbadge').innerHTML=DATA.ratesPending?'<span class="badge">Rates pending league vote</span>':'';
 document.getElementById('potgrid').innerHTML=[
- ['Projected Pot',money(projected),N+' teams @ '+money(DATA.buyIn)+' plus fees so far',true],
- ['Committed',money(committed),declaredCt+' of '+N+' teams declared'],
- ['Collected',money(collected),money(holdbackIn)+' held back from 2025'+(cashIn?' + '+money(cashIn)+' cash':'')+' · '+money(outstanding)+' still due'],
+ ['Projected Pot',money(projected),'All money. '+N+' teams @ '+money(DATA.buyIn)+' plus fees',true],
+ ['Committed',money(committed),declaredCt+' of '+N+' declared · full value, holdback not deducted'],
+ ['Already In Hand',money(collected),money(holdbackIn)+' held back from 2025'+(cashIn?' + '+money(cashIn)+' cash':'')],
+ ['Due At The Draft',money(dueAtDraft),'cash to collect from declared teams'],
  ['Luxury Tax',money(taxTotal),bumpCt+' bump'+(bumpCt===1?'':'s')+' across '+T.filter(t=>(t.keepers||[]).some(k=>k.bumped)).length+' team'+(T.filter(t=>(t.keepers||[]).some(k=>k.bumped)).length===1?'':'s')],
  ['Keeper Insurance',money(insTotal),insCt+' team'+(insCt===1?'':'s')+' @ '+money(DATA.insuranceFee)]
 ].map(c=>'<div class="pcell'+(c[3]?' tot':'')+'"><div class="k">'+c[0]+'</div><div class="v">'+c[1]+'</div><div class="m">'+c[2]+'</div></div>').join('');
@@ -187,10 +191,8 @@ for(let s=1;s<=N;s++){const t=byslot[s];
 document.getElementById('orderwrap').innerHTML=oh+'</table>';
 
 // ---------- MONEY ----------
-const withK2=T.filter(t=>(t.keepers||[]).length>0);
-const credTotal=T.reduce((s,t)=>s+creditFor(t),0);
 document.getElementById('moneynote').textContent=
-  money(committed)+' committed · '+money(collected)+' collected'+(credTotal?' · '+money(credTotal)+' in carryover credit':'');
+  money(dueAtDraft)+' to collect at the draft · holdback already counts toward the pot';
 let mh='<tr><th>Team</th><th>Owner</th><th class="r">Buy-in</th><th class="r">Luxury Tax</th>'+
        '<th class="c">Insurance</th><th class="r">Carryover</th><th class="r">Owes</th><th class="c">Paid</th></tr>';
 withK2.forEach(t=>{
@@ -208,7 +210,7 @@ mh+='<tr class="tot"><td colspan="2">'+withK2.length+' of '+N+' declared'+
     '<td class="r">'+money(withK2.length*DATA.buyIn)+'</td>'+
     '<td class="r">'+money(taxTotal)+'</td><td class="c">'+insCt+'</td>'+
     '<td class="r">'+(credTotal?'<span class="cred">-'+money(credTotal)+'</span>':'—')+'</td>'+
-    '<td class="r"><b>'+money(committed)+'</b></td><td class="c">'+paidCt+'/'+N+'</td></tr>';
+    '<td class="r"><b>'+money(dueAtDraft)+'</b></td><td class="c">'+paidCt+'/'+N+'</td></tr>';
 document.getElementById('money').innerHTML=mh;
 
 // ---------- LEGEND ----------
