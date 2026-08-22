@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 1:50 PM CT",
+  updated: "Aug 22, 2:05 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -21,7 +21,7 @@ const DATA = {
   slotPickOrder: ["pa","cd_chad","jj","rd","tf","jb","ry","tv","jn","cd","jl","ju"],
 
   teams: [
-    { id:"jb", name:"Jerome Mahomes", owner:"Jeremy Brownlee", slot:null, paid:false, insurance:true, carryover:16,
+    { id:"jb", name:"Jerome Mahomes", owner:"Jeremy Brownlee", slot:3, paid:false, insurance:true, carryover:16,
       keepers:[
         { player:"Jaxon Smith-Njigba", pos:"WR", nfl:"SEA", round:1,  bumped:false, discount:false }, // 2025: KEPT by Travis Briar (Perennial Losers) -> counts at ECR 5 = R1
         { player:"Rashee Rice",        pos:"WR", nfl:"KC",  round:2,  bumped:false, discount:false }, // 2025: KEPT by Jeremy -> counts at ECR 22 = R2
