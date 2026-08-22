@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 1:35 PM CT",
+  updated: "Aug 22, 1:50 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
