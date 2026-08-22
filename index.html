@@ -42,6 +42,15 @@ tr.onclock td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
 .clockpill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:99px;background:#0e3038;color:var(--accent);border:1px solid #1c4b56;margin-left:6px;vertical-align:1px}
 .openslots{margin-top:10px;font-size:13px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
 .openslots b{color:var(--tx)}
+.moneyscroll{overflow-x:auto;border-radius:13px}
+#money{min-width:820px}
+#money td.c,#money th.c{text-align:center}
+.yes{color:#34d399;font-weight:800;font-size:12px;letter-spacing:.05em}
+.due{color:#fbbf24;font-weight:800;font-size:12px;letter-spacing:.05em}
+.cred{color:#34d399;font-weight:800}
+.sm{font-size:11px;color:var(--dim2);font-weight:700}
+#money tr.tot td{background:var(--panel2);border-top:2px solid var(--line);color:var(--dim);font-size:13px}
+#money tr.tot td b{color:var(--tx);font-size:15px}
 /* BOARD */
 .boardscroll{overflow-x:auto;border:1px solid var(--line);border-radius:13px;background:var(--panel)}
 table.board{border-radius:0;min-width:1400px}
@@ -90,6 +99,9 @@ td.bumped{outline:2px dashed #f0a  ;outline-offset:-3px}
   <h2>Draft Order <span class="note" id="ordernote"></span></h2>
   <div id="orderwrap"></div>
 
+  <h2>Money <span class="note" id="moneynote"></span></h2>
+  <div class="moneyscroll"><table id="money"></table></div>
+
   <h2>The Board <span class="note">Snake order. Shaded cells are locked by keepers.</span></h2>
   <div class="legend" id="legend"></div>
   <div class="boardscroll" style="margin-top:11px"><table class="board" id="board"></table></div>
@@ -112,9 +124,10 @@ document.getElementById('upd').textContent=DATA.updated;
 
 // ---------- POT ----------
 const tax=r=>DATA.taxLadder[Math.min(r,8)]||DATA.taxLadder[8];
-const owedFor=t=>DATA.buyIn
-  + (t.keepers||[]).filter(k=>k.bumped).reduce((s,k)=>s+tax(k.round),0)
-  + (t.insurance?DATA.insuranceFee:0);
+const taxFor=t=>(t.keepers||[]).filter(k=>k.bumped).reduce((s,k)=>s+tax(k.round),0);
+const insFor=t=>(t.insurance?DATA.insuranceFee:0);
+const creditFor=t=>(t.carryover||0);
+const owedFor=t=>DATA.buyIn + taxFor(t) + insFor(t) - creditFor(t);
 
 const declaredCt=T.filter(t=>(t.keepers||[]).length>0).length;
 const paidCt=T.filter(t=>t.paid).length;
@@ -122,8 +135,12 @@ let bumpCt=0,taxTotal=0;
 T.forEach(t=>(t.keepers||[]).forEach(k=>{if(k.bumped){bumpCt++;taxTotal+=tax(k.round);}}));
 const insCt=T.filter(t=>t.insurance).length, insTotal=insCt*DATA.insuranceFee;
 
-const committed = T.filter(t=>(t.keepers||[]).length>0).reduce((s,t)=>s+owedFor(t),0);
-const collected = T.filter(t=>t.paid).reduce((s,t)=>s+owedFor(t),0);
+const declaredT = T.filter(t=>(t.keepers||[]).length>0);
+const gross     = declaredT.reduce((s,t)=>s+DATA.buyIn+taxFor(t)+insFor(t),0); // before credit
+const holdbackIn= declaredT.reduce((s,t)=>s+creditFor(t),0);                   // already in hand
+const cashIn    = T.filter(t=>t.paid).reduce((s,t)=>s+owedFor(t),0);
+const committed = gross;
+const collected = holdbackIn + cashIn;
 const projected = N*DATA.buyIn + taxTotal + insTotal;
 const outstanding = committed - collected;
 
@@ -132,7 +149,7 @@ document.getElementById('ratesbadge').innerHTML=DATA.ratesPending?'<span class="
 document.getElementById('potgrid').innerHTML=[
  ['Projected Pot',money(projected),N+' teams @ '+money(DATA.buyIn)+' plus fees so far',true],
  ['Committed',money(committed),declaredCt+' of '+N+' teams declared'],
- ['Collected',money(collected),paidCt+' of '+N+' paid'+(outstanding>0?' · '+money(outstanding)+' outstanding':'')],
+ ['Collected',money(collected),money(holdbackIn)+' held back from 2025'+(cashIn?' + '+money(cashIn)+' cash':'')+' · '+money(outstanding)+' still due'],
  ['Luxury Tax',money(taxTotal),bumpCt+' bump'+(bumpCt===1?'':'s')+' across '+T.filter(t=>(t.keepers||[]).some(k=>k.bumped)).length+' team'+(T.filter(t=>(t.keepers||[]).some(k=>k.bumped)).length===1?'':'s')],
  ['Keeper Insurance',money(insTotal),insCt+' team'+(insCt===1?'':'s')+' @ '+money(DATA.insuranceFee)]
 ].map(c=>'<div class="pcell'+(c[3]?' tot':'')+'"><div class="k">'+c[0]+'</div><div class="v">'+c[1]+'</div><div class="m">'+c[2]+'</div></div>').join('');
@@ -167,6 +184,31 @@ for(let s=1;s<=N;s++){const t=byslot[s];
    (t?'<td>'+t.name+'</td><td class="muted">'+(t.owner||'')+'</td><td class="r">'+((t.keepers||[]).length||'<span class="muted">0</span>')+'</td>'
      :'<td colspan="3" class="open">open</td>')+'</tr>';}
 document.getElementById('orderwrap').innerHTML=oh+'</table>';
+
+// ---------- MONEY ----------
+const withK2=T.filter(t=>(t.keepers||[]).length>0);
+const credTotal=T.reduce((s,t)=>s+creditFor(t),0);
+document.getElementById('moneynote').textContent=
+  money(committed)+' committed · '+money(collected)+' collected'+(credTotal?' · '+money(credTotal)+' in carryover credit':'');
+let mh='<tr><th>Team</th><th>Owner</th><th class="r">Buy-in</th><th class="r">Luxury Tax</th>'+
+       '<th class="c">Insurance</th><th class="r">Carryover</th><th class="r">Owes</th><th class="c">Paid</th></tr>';
+withK2.forEach(t=>{
+  const cr=creditFor(t), tx=taxFor(t), nb=(t.keepers||[]).filter(k=>k.bumped).length;
+  mh+='<tr><td>'+t.name+'</td><td class="muted">'+t.owner+'</td>'+
+   '<td class="r">'+money(DATA.buyIn)+'</td>'+
+   '<td class="r">'+(tx?money(tx)+' <span class="sm">('+nb+')</span>':'<span class="muted">—</span>')+'</td>'+
+   '<td class="c">'+(t.insurance?'<span class="yes">YES</span>':'<span class="muted">no</span>')+'</td>'+
+   '<td class="r">'+(cr?'<span class="cred">-'+money(cr)+'</span>':'<span class="muted">—</span>')+'</td>'+
+   '<td class="r"><b>'+money(owedFor(t))+'</b></td>'+
+   '<td class="c">'+(t.paid?'<span class="yes">PAID</span>':'<span class="due">DUE</span>')+'</td></tr>';});
+const waiting=T.filter(t=>!(t.keepers||[]).length).length;
+mh+='<tr class="tot"><td colspan="2">'+withK2.length+' of '+N+' declared'+
+    (waiting?' · '+waiting+' still out':'')+'</td>'+
+    '<td class="r">'+money(withK2.length*DATA.buyIn)+'</td>'+
+    '<td class="r">'+money(taxTotal)+'</td><td class="c">'+insCt+'</td>'+
+    '<td class="r">'+(credTotal?'<span class="cred">-'+money(credTotal)+'</span>':'—')+'</td>'+
+    '<td class="r"><b>'+money(committed)+'</b></td><td class="c">'+paidCt+'/'+N+'</td></tr>';
+document.getElementById('money').innerHTML=mh;
 
 // ---------- LEGEND ----------
 document.getElementById('legend').innerHTML=POS.map(p=>'<span class="lg"><span class="dot" style="background:'+posColor(p)+'"></span>'+p+'</span>').join('')
