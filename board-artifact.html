@@ -29,7 +29,7 @@ h2 .note{font-family:Inter,sans-serif;font-size:13px;font-weight:600;letter-spac
 table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:13px;overflow:hidden;font-variant-numeric:tabular-nums}
 th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:700;padding:11px 12px;text-align:left;background:var(--panel2);border-bottom:1px solid var(--line)}
 td{padding:11px 12px;font-size:14px;border-top:1px solid var(--line2);font-weight:600}
-td.r{text-align:right}
+td.r,th.r{text-align:right}
 .muted{color:var(--dim2);font-weight:600}
 .slotnum{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#1e2733;font-size:13px;font-weight:800;color:var(--tx)}
 .open{color:var(--dim2);font-style:italic;font-weight:600}
@@ -47,6 +47,24 @@ tr.onclock td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
 .sm{font-size:11px;color:var(--dim2);font-weight:700}
 #money tr.tot td{background:var(--panel2);border-top:2px solid var(--line);color:var(--dim);font-size:13px}
 #money tr.tot td b{color:var(--tx);font-size:15px}
+/* readable table columns — stop the sprawl on wide screens */
+#orderwrap table,#selwrap table{table-layout:fixed}
+#orderwrap table{max-width:1000px}
+#selwrap table{max-width:1080px}
+#money{max-width:1240px}
+#orderwrap th:nth-child(1),#orderwrap td:nth-child(1){width:74px}
+#orderwrap th:nth-child(2),#orderwrap td:nth-child(2){width:40%}
+#orderwrap th:nth-child(3),#orderwrap td:nth-child(3){width:38%}
+#orderwrap th:nth-child(4),#orderwrap td:nth-child(4){width:96px;text-align:center}
+#selwrap th:nth-child(1),#selwrap td:nth-child(1){width:56px}
+#selwrap th:nth-child(2),#selwrap td:nth-child(2){width:34%}
+#selwrap th:nth-child(3),#selwrap td:nth-child(3){width:42%}
+#selwrap th:nth-child(4),#selwrap td:nth-child(4){width:110px;text-align:right}
+#money th:nth-child(1),#money td:nth-child(1){width:24%}
+#money th:nth-child(2),#money td:nth-child(2){width:20%}
+tbody tr:nth-child(even) td,table tr:nth-child(even) td{background:rgba(255,255,255,.014)}
+#orderwrap tr:hover td,#selwrap tr:hover td,#money tr:hover td{background:rgba(34,211,238,.05)}
+#money tr.tot:hover td{background:var(--panel2)}
 /* BOARD */
 .boardscroll{overflow-x:auto;border:1px solid var(--line);border-radius:13px;background:var(--panel)}
 table.board{border-radius:0;min-width:1400px}
@@ -115,7 +133,7 @@ td.bumped{outline:2px dashed #f0a  ;outline-offset:-3px}
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 1:05 PM CT",
+  updated: "Aug 22, 1:25 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
