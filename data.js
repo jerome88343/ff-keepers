@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 1:25 PM CT",
+  updated: "Aug 22, 1:35 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -70,8 +70,14 @@ const DATA = {
         { player:"DJ Moore",     pos:"WR", nfl:"BUF", round:5, bumped:false, discount:false }, // drafted R4 2025 by Josh James; ECR 50 = R5 cheaper
         { player:"Tyler Warren", pos:"TE", nfl:"IND", round:6, bumped:true,  origin:5,  discount:false }  // drafted R4 2025 by Reid; ECR 52 = R5, bumped off DJ Moore
       ]},
-    { id:"tf",      name:"Alphabet Army",         owner:"Travis Farmer", slot:null, paid:false, insurance:false, carryover:8, keepers:[] },
-    { id:"ry",      name:"Tee Diddy And The Didlers", owner:"Ryan Anderson",    slot:null, paid:false, insurance:false, carryover:150, keepers:[] },
+    { id:"tf",      name:"Alphabet Army",         owner:"Travis Farmer", slot:10, paid:false, insurance:false, carryover:8, keepers:[] },
+    { id:"ry", name:"Tee Diddy And The Didlers", owner:"Ryan Anderson", slot:null, paid:false, insurance:false, carryover:150,
+      keepers:[
+        { player:"Drake London",   pos:"WR", nfl:"ATL", round:1, bumped:false, discount:false }, // kept 2025 by Ryan -> ECR 10 = R1
+        { player:"Saquon Barkley", pos:"RB", nfl:"PHI", round:3, bumped:false, discount:false }, // kept 2025 by Ryan -> ECR 26 = R3
+        { player:"Breece Hall",    pos:"RB", nfl:"NYJ", round:4, bumped:false, discount:false }, // kept 2025 by Ryan -> ECR 40 = R4
+        { player:"George Pickens", pos:"WR", nfl:"DAL", round:6, bumped:false, discount:true  }  // drafted R6 2025 by Ryan. ECR R2 -> 4-rd discount
+      ]},
     { id:"tv",      name:"Perennial Losers",      owner:"Travis Briar", slot:null, paid:false, insurance:false, carryover:98, keepers:[] },
     { id:"jl", name:"$Test Tube Daddy$", owner:"Josh Lennon", slot:null, paid:false, insurance:false, carryover:30,
       keepers:[
