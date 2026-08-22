@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 3:10 PM CT",
+  updated: "Aug 22, 4:40 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -71,7 +71,7 @@ const DATA = {
         { player:"Tyler Warren", pos:"TE", nfl:"IND", round:6, bumped:true,  origin:5,  discount:false }  // drafted R4 2025 by Reid; ECR 52 = R5, bumped off DJ Moore
       ]},
     { id:"tf",      name:"Alphabet Army",         owner:"Travis Farmer", slot:10, paid:false, insurance:false, carryover:8, keepers:[] },
-    { id:"ry", name:"Tee Diddy And The Didlers", owner:"Ryan Anderson", slot:9, paid:false, insurance:true, carryover:150,
+    { id:"ry", name:"Breece for Anal Impact", owner:"Ryan Anderson", slot:9, paid:false, insurance:true, carryover:150,
       keepers:[
         { player:"Drake London",   pos:"WR", nfl:"ATL", round:1, bumped:false, discount:false }, // kept 2025 by Ryan -> ECR 10 = R1
         { player:"Saquon Barkley", pos:"RB", nfl:"PHI", round:3, bumped:false, discount:false }, // kept 2025 by Ryan -> ECR 26 = R3
@@ -100,4 +100,21 @@ const DATA = {
         { player:"Ladd McConkey",     pos:"WR", nfl:"LAC", round:4, bumped:true,  origin:3, discount:false } // kept 2025 -> ECR 34 = R3, bumped off McMillan
       ]}
   ]
+};
+
+// 2026 draft picks each franchise actually owns (MFL Future Draft Picks, pulled 2026-08-22 4:34 PM CT).
+// Repeated round = they hold two picks there. Missing round = traded away.
+const PICKS_2026 = {
+  cd:      [1,2,3,4,5,7,10,11,11,12,13,14,15,16,16],   // missing 6,8,9
+  jn:      [1,2,3,4,5,6,7,8,9,10,12,13,14,15,16],   // missing 11
+  cd_chad: [1,2,3,4,5,6,7,8,8,9,10,11,12,13,14,15,16],
+  jb:      [1,2,3,4,5,5,6,7,8,10,11,12,13,14,15],   // missing 9,16
+  ju:      [1,2,3,4,5,6,7,8,8,8,9,10,11,12,13,14,15,16],
+  ry:      [1,2,3,4,5,6,7,9,10,11,12,13,14,15,16],   // missing 8
+  jl:      [1,2,3,4,6,7,8,9,10,11,12,13,14,15,16],   // missing 5
+  jj:      [1,2,3,4,6,6,8,9,9,10,11,12,13,14,15,16],   // missing 5,7
+  tf:      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+  tv:      [1,2,3,4,5,5,6,7,7,9,10,11,12,13,14,15,16],   // missing 8
+  pa:      [1,2,3,4,5,6,7,8,9,9,10,11,12,13,14,15,16],
+  rd:      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
 };

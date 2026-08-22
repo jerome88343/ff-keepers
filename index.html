@@ -84,6 +84,11 @@ td.rdlbl{background:var(--panel2);font-size:12px;color:var(--dim);font-weight:80
 td.keeper{background:#12171f}
 td.bumped{outline:2px dashed #f0a  ;outline-offset:-3px}
 .taxtag{position:absolute;font-size:9px}
+td.traded{background:#1a1113}
+td.traded .pk{color:#5a3b3f}
+.tradedtag{font-size:9px;font-weight:800;color:#8a5158;letter-spacing:.06em;text-transform:uppercase}
+td.extra{background:#0d1f18}
+.extratag{font-size:9px;font-weight:800;color:#34d399;letter-spacing:.06em;text-transform:uppercase}
 /* legend */
 .legend{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 0}
 .lg{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--dim);background:var(--panel);border:1px solid var(--line2);padding:5px 10px;border-radius:99px}
@@ -233,7 +238,9 @@ document.getElementById('money').innerHTML=mh;
 
 // ---------- LEGEND ----------
 document.getElementById('legend').innerHTML=POS.map(p=>'<span class="lg"><span class="dot" style="background:'+posColor(p)+'"></span>'+p+'</span>').join('')
- +'<span class="lg"><span class="dot" style="background:transparent;border:2px dashed #f0a"></span>Bumped (luxury tax)</span>';
+ +'<span class="lg"><span class="dot" style="background:transparent;border:2px dashed #f0a"></span>Bumped (luxury tax)</span>'
+ +'<span class="lg"><span class="dot" style="background:#2a1a1a;border:1px solid #5a2a2e"></span>Pick traded away</span>'
+ +'<span class="lg"><span class="dot" style="background:#0e2a20;border:1px solid #1c5640"></span>Extra pick acquired</span>';
 
 // ---------- BOARD ----------
 let bh='<tr><th></th>';
@@ -253,7 +260,14 @@ for(let r=1;r<=R;r++){
        '<span class="nm" style="color:'+posColor(k.pos)+'">'+k.player+'</span>'+
        '<span class="meta">'+k.pos+(k.nfl?' · '+k.nfl:'')+(k.bumped?' · $'+tax(taxRd(k)):'')+'</span></div></td>';
    } else {
-     bh+='<td><div class="cell"><span class="pk">'+label+'</span></div></td>';
+     const owned=(typeof PICKS_2026!=='undefined'&&t&&PICKS_2026[t.id])?PICKS_2026[t.id].filter(x=>x===r).length:1;
+     if(t&&owned===0){
+       bh+='<td class="traded"><div class="cell"><span class="pk">'+label+'</span><span class="tradedtag">traded</span></div></td>';
+     } else if(t&&owned>1){
+       bh+='<td class="extra"><div class="cell"><span class="pk">'+label+'</span><span class="extratag">+'+(owned-1)+' extra</span></div></td>';
+     } else {
+       bh+='<td><div class="cell"><span class="pk">'+label+'</span></div></td>';
+     }
    }
  }
  bh+='</tr>';
