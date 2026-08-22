@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 2:40 PM CT",
+  updated: "Aug 22, 2:50 PM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -78,7 +78,7 @@ const DATA = {
         { player:"Breece Hall",    pos:"RB", nfl:"NYJ", round:4, bumped:false, discount:false }, // kept 2025 by Ryan -> ECR 40 = R4
         { player:"George Pickens", pos:"WR", nfl:"DAL", round:6, bumped:false, discount:true  }  // drafted R6 2025 by Ryan. ECR R2 -> 4-rd discount
       ]},
-    { id:"tv", name:"Perennial Losers", owner:"Travis Briar", slot:null, paid:false, insurance:true, carryover:98,
+    { id:"tv", name:"Perennial Losers", owner:"Travis Briar", slot:4, paid:false, insurance:true, carryover:98,
       keepers:[
         { player:"Ja'Marr Chase",       pos:"WR", nfl:"CIN", round:1,  bumped:false, discount:false }, // kept 2025 by Briar -> ECR 1 = R1
         { player:"Christian McCaffrey", pos:"RB", nfl:"SF",  round:2,  bumped:true,  origin:1, discount:false }, // kept 2025 -> ECR 9 = R1, bumped off Chase
