@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>F The Raiders 2026 — Keepers &amp; Draft Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d0f13; --panel:#151a21; --panel2:#12161c; --line:#232a35; --line2:#1c222b;
+  --tx:#e8ecf2; --dim:#8b97a8; --dim2:#5d6878; --accent:#22d3ee;
+  --QB:#f87171; --RB:#34d399; --WR:#60a5fa; --TE:#c084fc; --PK:#f472b6; --DEF:#94a3b8;
+}
+body{background:var(--bg);color:var(--tx);font-family:Inter,system-ui,sans-serif;padding:26px 22px 70px;-webkit-text-size-adjust:100%}
+.wrap{max-width:1560px;margin:0 auto}
+.eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:19px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(34px,6vw,60px);line-height:1;text-transform:uppercase;margin:2px 0 6px}
+.sub{color:var(--dim);font-size:15px;font-weight:600}
+.sub b{color:var(--tx)}
+h2{font-family:'Barlow Condensed',sans-serif;font-size:27px;text-transform:uppercase;letter-spacing:.05em;margin:34px 0 12px;color:var(--tx);display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+h2 .note{font-family:Inter,sans-serif;font-size:13px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--dim)}
+.badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:4px 9px;border-radius:99px;background:#2b2233;color:#e0b3ff;border:1px solid #4b3a5c}
+/* POT */
+.pot{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:20px 22px;margin-top:20px}
+.potgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px}
+.pcell{background:var(--panel2);border:1px solid var(--line2);border-radius:11px;padding:13px 15px}
+.pcell .k{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--dim);font-weight:700}
+.pcell .v{font-size:30px;font-weight:800;margin-top:3px;font-variant-numeric:tabular-nums}
+.pcell .m{font-size:12px;color:var(--dim2);font-weight:600;margin-top:2px}
+.pcell.tot{background:#0d1f24;border-color:#1c4b56}
+.pcell.tot .v{color:var(--accent)}
+/* TABLES */
+table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:13px;overflow:hidden;font-variant-numeric:tabular-nums}
+th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:700;padding:11px 12px;text-align:left;background:var(--panel2);border-bottom:1px solid var(--line)}
+td{padding:11px 12px;font-size:14px;border-top:1px solid var(--line2);font-weight:600}
+td.r{text-align:right}
+.muted{color:var(--dim2);font-weight:600}
+.slotnum{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#1e2733;font-size:13px;font-weight:800;color:var(--tx)}
+.open{color:var(--dim2);font-style:italic;font-weight:600}
+/* BOARD */
+.boardscroll{overflow-x:auto;border:1px solid var(--line);border-radius:13px;background:var(--panel)}
+table.board{border-radius:0;min-width:1400px}
+table.board th{position:sticky;top:0;z-index:2;text-align:center;padding:9px 5px;font-size:11px;line-height:1.25}
+table.board th .sl{display:block;font-size:15px;font-weight:800;color:var(--tx);letter-spacing:0}
+table.board th .tm{display:block;font-size:10px;color:var(--dim);letter-spacing:.04em;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:108px}
+table.board td{padding:0;border:1px solid var(--line2);text-align:center;height:50px;vertical-align:middle}
+td.rdlbl{background:var(--panel2);font-size:12px;color:var(--dim);font-weight:800;letter-spacing:.06em;width:56px;min-width:56px;position:sticky;left:0;z-index:1}
+.cell{display:flex;flex-direction:column;justify-content:center;height:100%;padding:5px 6px;gap:1px}
+.cell .pk{font-size:9px;color:#4a5361;font-weight:700;letter-spacing:.04em}
+.cell .nm{font-size:12.5px;font-weight:800;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell .meta{font-size:9px;color:var(--dim2);font-weight:700;letter-spacing:.04em}
+td.keeper{background:#12171f}
+td.bumped{outline:2px dashed #f0a  ;outline-offset:-3px}
+.taxtag{position:absolute;font-size:9px}
+/* legend */
+.legend{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 0}
+.lg{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--dim);background:var(--panel);border:1px solid var(--line2);padding:5px 10px;border-radius:99px}
+.dot{width:9px;height:9px;border-radius:3px;display:inline-block}
+/* keeper cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:15px 17px}
+.card .ch{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:9px}
+.card .tn{font-family:'Barlow Condensed',sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:.03em}
+.card .ow{font-size:11px;color:var(--dim);font-weight:700}
+.krow{display:flex;align-items:center;gap:9px;padding:7px 0;border-top:1px solid var(--line2)}
+.pos{font-size:10px;font-weight:800;padding:3px 6px;border-radius:5px;min-width:34px;text-align:center;letter-spacing:.04em;color:#0d0f13}
+.kn{font-size:14px;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kr{font-size:12px;font-weight:800;color:var(--dim);white-space:nowrap}
+.tax{font-size:10px;font-weight:800;color:#fca5a5;background:#2a1618;border:1px solid #5a2a2e;padding:2px 6px;border-radius:5px}
+.empty{background:var(--panel);border:1px dashed var(--line);border-radius:13px;padding:26px;text-align:center;color:var(--dim2);font-weight:600;font-size:14px}
+.foot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line2);color:var(--dim2);font-size:12px;font-weight:600;text-align:center;line-height:1.7}
+@media(max-width:640px){body{padding:18px 13px 60px}.pcell .v{font-size:25px}}
+</style></head>
+<body><div class="wrap">
+  <div class="eyebrow">F The Raiders &nbsp;·&nbsp; <span id="season"></span> Season</div>
+  <h1>Keepers &amp; Draft Board</h1>
+  <div class="sub">Draft <b id="ddate"></b> &nbsp;·&nbsp; Updated <b id="upd"></b> &nbsp;·&nbsp; <span id="declared"></span></div>
+
+  <h2>The Pot <span id="ratesbadge"></span></h2>
+  <div class="pot"><div class="potgrid" id="potgrid"></div></div>
+
+  <h2>Draft Order <span class="note" id="ordernote"></span></h2>
+  <div id="orderwrap"></div>
+
+  <h2>The Board <span class="note">Snake order. Shaded cells are locked by keepers.</span></h2>
+  <div class="legend" id="legend"></div>
+  <div class="boardscroll" style="margin-top:11px"><table class="board" id="board"></table></div>
+
+  <h2>Keepers By Team</h2>
+  <div id="cards"></div>
+
+  <div class="foot" id="foot"></div>
+</div>
+<script src="data.js"></script>
+<script>
+const POS=['QB','RB','WR','TE','PK','DEF'];
+const posColor=p=>getComputedStyle(document.documentElement).getPropertyValue('--'+(POS.includes(p)?p:'DEF')).trim();
+const money=n=>'$'+n.toLocaleString('en-US');
+const T=DATA.teams, N=DATA.teamCount, R=DATA.rounds;
+const tax=r=>DATA.taxLadder[Math.min(r,8)]||DATA.taxLadder[8];
+
+document.getElementById('season').textContent=DATA.season;
+document.getElementById('ddate').textContent=DATA.draftDate;
+document.getElementById('upd').textContent=DATA.updated;
+
+// ---------- POT ----------
+const paidCt=T.filter(t=>t.paid).length;
+const declaredCt=T.filter(t=>t.keepers&&t.keepers.length>0).length;
+let bumpCt=0,taxTotal=0;
+T.forEach(t=>(t.keepers||[]).forEach(k=>{if(k.bumped){bumpCt++;taxTotal+=tax(k.round);}}));
+const insCt=T.filter(t=>t.insurance).length, insTotal=insCt*DATA.insuranceFee;
+const buyTotal=paidCt*DATA.buyIn;
+const running=buyTotal+(DATA.feesIntoPot?taxTotal+insTotal:0);
+const projected=N*DATA.buyIn+(DATA.feesIntoPot?taxTotal+insTotal:0);
+
+document.getElementById('declared').textContent=declaredCt+' of '+N+' teams have declared keepers';
+document.getElementById('ratesbadge').innerHTML=DATA.ratesPending?'<span class="badge">Rates pending league vote</span>':'';
+document.getElementById('potgrid').innerHTML=[
+ ['Buy-ins',money(buyTotal),paidCt+' of '+N+' paid @ '+money(DATA.buyIn)],
+ ['Luxury Tax',money(taxTotal),bumpCt+' bump'+(bumpCt===1?'':'s')+' charged'],
+ ['Keeper Insurance',money(insTotal),insCt+' team'+(insCt===1?'':'s')+' @ '+money(DATA.insuranceFee)],
+ ['Running Total',money(running),DATA.feesIntoPot?'Buy-ins + fees collected':'Buy-ins only (fees tracked separately)'],
+ ['Projected At Full 12',money(projected),'If every team pays in']
+].map((c,i)=>'<div class="pcell'+(i===3?' tot':'')+'"><div class="k">'+c[0]+'</div><div class="v">'+c[1]+'</div><div class="m">'+c[2]+'</div></div>').join('');
+
+// ---------- DRAFT ORDER ----------
+const byslot={}; T.forEach(t=>{if(t.slot)byslot[t.slot]=t;});
+const chosen=Object.keys(byslot).length;
+document.getElementById('ordernote').textContent=chosen+' of '+N+' slots claimed';
+let oh='<table><tr><th style="width:70px">Slot</th><th>Team</th><th>Owner</th><th class="r">Keepers</th></tr>';
+for(let s=1;s<=N;s++){const t=byslot[s];
+ oh+='<tr><td><span class="slotnum">'+s+'</span></td>'+
+   (t?'<td>'+t.name+'</td><td class="muted">'+(t.owner||'')+'</td><td class="r">'+((t.keepers||[]).length||'<span class="muted">0</span>')+'</td>'
+     :'<td colspan="3" class="open">open</td>')+'</tr>';}
+document.getElementById('orderwrap').innerHTML=oh+'</table>';
+
+// ---------- LEGEND ----------
+document.getElementById('legend').innerHTML=POS.map(p=>'<span class="lg"><span class="dot" style="background:'+posColor(p)+'"></span>'+p+'</span>').join('')
+ +'<span class="lg"><span class="dot" style="background:transparent;border:2px dashed #f0a"></span>Bumped (luxury tax)</span>';
+
+// ---------- BOARD ----------
+let bh='<tr><th></th>';
+for(let s=1;s<=N;s++){const t=byslot[s];
+ bh+='<th><span class="sl">'+s+'</span><span class="tm">'+(t?t.name:'open')+'</span></th>';}
+bh+='</tr>';
+for(let r=1;r<=R;r++){
+ bh+='<tr><td class="rdlbl">R'+r+'</td>';
+ for(let s=1;s<=N;s++){
+   const t=byslot[s];
+   const pickNo=(r-1)*N+(r%2===1?s:(N-s+1));
+   const label=r+'.'+String(r%2===1?s:(N-s+1)).padStart(2,'0');
+   let k=null; if(t) k=(t.keepers||[]).find(x=>x.round===r)||null;
+   if(k){
+     bh+='<td class="keeper'+(k.bumped?' bumped':'')+'"><div class="cell">'+
+       '<span class="pk">'+label+'</span>'+
+       '<span class="nm" style="color:'+posColor(k.pos)+'">'+k.player+'</span>'+
+       '<span class="meta">'+k.pos+(k.nfl?' · '+k.nfl:'')+(k.bumped?' · $'+tax(r):'')+'</span></div></td>';
+   } else {
+     bh+='<td><div class="cell"><span class="pk">'+label+'</span></div></td>';
+   }
+ }
+ bh+='</tr>';
+}
+document.getElementById('board').innerHTML=bh;
+
+// ---------- CARDS ----------
+const withK=T.filter(t=>(t.keepers||[]).length>0);
+if(!withK.length){
+  document.getElementById('cards').innerHTML='<div class="empty">No keepers declared yet. They land here as owners post them.</div>';
+}else{
+  document.getElementById('cards').className='cards';
+  document.getElementById('cards').innerHTML=withK.map(t=>{
+    const ks=[...t.keepers].sort((a,b)=>a.round-b.round);
+    const owed=DATA.buyIn+ks.filter(k=>k.bumped).reduce((s,k)=>s+tax(k.round),0)+(t.insurance?DATA.insuranceFee:0);
+    return '<div class="card"><div class="ch"><span class="tn">'+t.name+'</span><span class="ow">'+
+      (t.slot?'Slot '+t.slot+' · ':'')+(t.owner||'')+'</span></div>'+
+      ks.map(k=>'<div class="krow"><span class="pos" style="background:'+posColor(k.pos)+'">'+k.pos+'</span>'+
+        '<span class="kn">'+k.player+'</span>'+
+        (k.bumped?'<span class="tax">+$'+tax(k.round)+'</span>':'')+
+        '<span class="kr">R'+k.round+'</span></div>').join('')+
+      '<div class="krow" style="border-top:1px solid var(--line);margin-top:4px"><span class="kn muted" style="font-size:12px">Owes at draft</span>'+
+      '<span class="kr" style="color:var(--tx);font-size:14px">'+money(owed)+'</span></div></div>';
+  }).join('');
+}
+document.getElementById('foot').innerHTML=
+ 'Max 4 keepers &nbsp;&#183;&nbsp; max 3 WR, max 2 every other position &nbsp;·&nbsp; max 2 at a discounted round &nbsp;·&nbsp; one keeper per round<br>'+
+ 'Luxury tax is charged each time a keeper is bumped back a round. Keeper insurance ('+money(DATA.insuranceFee)+') must be declared on keeper day.';
+</script></body></html>
