@@ -39,11 +39,6 @@ td.r,th.r{text-align:right}
 .muted{color:var(--dim2);font-weight:600}
 .slotnum{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#1e2733;font-size:13px;font-weight:800;color:var(--tx)}
 .open{color:var(--dim2);font-style:italic;font-weight:600}
-tr.onclock td{background:#0d1f24}
-tr.onclock td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
-.clockpill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:99px;background:#0e3038;color:var(--accent);border:1px solid #1c4b56;margin-left:6px;vertical-align:1px}
-.openslots{margin-top:10px;font-size:13px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
-.openslots b{color:var(--tx)}
 .moneyscroll{overflow-x:auto;border-radius:13px}
 #money{min-width:820px}
 #money td.c,#money th.c{text-align:center}
@@ -54,47 +49,18 @@ tr.onclock td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
 #money tr.tot td{background:var(--panel2);border-top:2px solid var(--line);color:var(--dim);font-size:13px}
 #money tr.tot td b{color:var(--tx);font-size:15px}
 /* readable table columns — stop the sprawl on wide screens */
-#orderwrap table,#selwrap table{table-layout:fixed}
+#orderwrap table{table-layout:fixed}
 #orderwrap table{max-width:1000px}
-#selwrap table{max-width:1080px}
 #money{max-width:1240px}
 #orderwrap th:nth-child(1),#orderwrap td:nth-child(1){width:74px}
 #orderwrap th:nth-child(2),#orderwrap td:nth-child(2){width:40%}
 #orderwrap th:nth-child(3),#orderwrap td:nth-child(3){width:38%}
 #orderwrap th:nth-child(4),#orderwrap td:nth-child(4){width:96px;text-align:center}
-#selwrap th:nth-child(1),#selwrap td:nth-child(1){width:56px}
-#selwrap th:nth-child(2),#selwrap td:nth-child(2){width:34%}
-#selwrap th:nth-child(3),#selwrap td:nth-child(3){width:42%}
-#selwrap th:nth-child(4),#selwrap td:nth-child(4){width:110px;text-align:right}
 #money th:nth-child(1),#money td:nth-child(1){width:24%}
 #money th:nth-child(2),#money td:nth-child(2){width:20%}
 tbody tr:nth-child(even) td,table tr:nth-child(even) td{background:rgba(255,255,255,.014)}
-#orderwrap tr:hover td,#selwrap tr:hover td,#money tr:hover td{background:rgba(34,211,238,.05)}
+#orderwrap tr:hover td,#money tr:hover td{background:rgba(34,211,238,.05)}
 #money tr.tot:hover td{background:var(--panel2)}
-/* BOARD */
-.boardscroll{overflow-x:auto;border:1px solid var(--line);border-radius:13px;background:var(--panel)}
-table.board{border-radius:0;min-width:1400px}
-table.board th{position:sticky;top:0;z-index:2;text-align:center;padding:9px 5px;font-size:11px;line-height:1.25}
-table.board th .sl{display:block;font-size:15px;font-weight:800;color:var(--tx);letter-spacing:0}
-table.board th .tm{display:block;font-size:10px;color:var(--dim);letter-spacing:.04em;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:108px}
-table.board td{padding:0;border:1px solid var(--line2);text-align:center;height:50px;vertical-align:middle}
-td.rdlbl{background:var(--panel2);font-size:12px;color:var(--dim);font-weight:800;letter-spacing:.06em;width:56px;min-width:56px;position:sticky;left:0;z-index:1}
-.cell{display:flex;flex-direction:column;justify-content:center;height:100%;padding:5px 6px;gap:1px}
-.cell .pk{font-size:9px;color:#4a5361;font-weight:700;letter-spacing:.04em}
-.cell .nm{font-size:12.5px;font-weight:800;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cell .meta{font-size:9px;color:var(--dim2);font-weight:700;letter-spacing:.04em}
-td.keeper{background:#12171f}
-td.bumped{outline:2px dashed #f0a  ;outline-offset:-3px}
-.taxtag{position:absolute;font-size:9px}
-td.traded{background:#1a1113}
-td.traded .pk{color:#5a3b3f}
-.tradedtag{font-size:9px;font-weight:800;color:#8a5158;letter-spacing:.06em;text-transform:uppercase}
-td.extra{background:#0d1f18}
-.extratag{font-size:9px;font-weight:800;color:#34d399;letter-spacing:.06em;text-transform:uppercase}
-/* legend */
-.legend{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 0}
-.lg{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--dim);background:var(--panel);border:1px solid var(--line2);padding:5px 10px;border-radius:99px}
-.dot{width:9px;height:9px;border-radius:3px;display:inline-block}
 /* keeper cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:15px 17px}
@@ -118,18 +84,11 @@ td.extra{background:#0d1f18}
   <h2>The Pot <span id="ratesbadge"></span></h2>
   <div class="pot"><div class="potgrid" id="potgrid"></div></div>
 
-  <h2>Slot Selection <span class="note" id="selnote"></span></h2>
-  <div id="selwrap"></div>
-
   <h2>Draft Order <span class="note" id="ordernote"></span></h2>
   <div id="orderwrap"></div>
 
   <h2>Money <span class="note" id="moneynote"></span></h2>
   <div class="moneyscroll"><table id="money"></table></div>
-
-  <h2>The Board <span class="note">Snake order. Shaded cells are locked by keepers.</span></h2>
-  <div class="legend" id="legend"></div>
-  <div class="boardscroll" style="margin-top:11px"><table class="board" id="board"></table></div>
 
   <h2>Keepers By Team</h2>
   <div id="cards"></div>
@@ -184,25 +143,9 @@ document.getElementById('potgrid').innerHTML=[
  ['Keeper Insurance',money(insTotal),insCt+' team'+(insCt===1?'':'s')+' @ '+money(DATA.insuranceFee)]
 ].map(c=>'<div class="pcell'+(c[3]?' tot':'')+'"><div class="k">'+c[0]+'</div><div class="v">'+c[1]+'</div><div class="m">'+c[2]+'</div></div>').join('');
 
-// ---------- SLOT SELECTION ----------
 const byId={}; T.forEach(t=>byId[t.id]=t);
 const order=(DATA.slotPickOrder||[]).map(id=>byId[id]).filter(Boolean);
-const onClockIdx=order.findIndex(t=>!t.slot);
-const takenSlots=new Set(T.filter(t=>t.slot).map(t=>t.slot));
-const openSlots=[]; for(let i=1;i<=N;i++) if(!takenSlots.has(i)) openSlots.push(i);
-document.getElementById('selnote').textContent=
-  (onClockIdx<0?'all slots claimed':takenSlots.size+' of '+N+' picked · '+order[onClockIdx].owner+' is on the clock');
-let sh='<table><tr><th style="width:52px">#</th><th>Owner</th><th>Team</th><th class="r">Slot</th></tr>';
-order.forEach((t,i)=>{
-  const cls=(i===onClockIdx)?' class="onclock"':'';
-  sh+='<tr'+cls+'><td class="muted">'+(i+1)+'</td><td>'+t.owner+
-    (i===onClockIdx?' <span class="clockpill">on the clock</span>':'')+'</td>'+
-    '<td class="muted">'+t.name+'</td><td class="r">'+
-    (t.slot?'<span class="slotnum">'+t.slot+'</span>':(i===onClockIdx?'<span class="open">picking…</span>':'<span class="open">waiting</span>'))+
-    '</td></tr>';});
-sh+='</table>';
-if(openSlots.length) sh+='<div class="openslots"><b>Slots still open:</b> '+openSlots.join(' · ')+'</div>';
-document.getElementById('selwrap').innerHTML=sh;
+const onClockTeam=order.find(t=>!t.slot);
 
 // ---------- DRAFT ORDER ----------
 const byslot={}; T.forEach(t=>{if(t.slot)byslot[t.slot]=t;});
@@ -237,44 +180,6 @@ mh+='<tr class="tot"><td colspan="2">'+withK2.length+' of '+N+' declared'+
     '<td class="r">'+(credTotal?'<span class="cred">-'+money(credTotal)+'</span>':'—')+'</td>'+
     '<td class="r"><b>'+money(dueAtDraft)+'</b></td><td class="c">'+paidCt+'/'+N+'</td></tr>';
 document.getElementById('money').innerHTML=mh;
-
-// ---------- LEGEND ----------
-document.getElementById('legend').innerHTML=POS.map(p=>'<span class="lg"><span class="dot" style="background:'+posColor(p)+'"></span>'+p+'</span>').join('')
- +'<span class="lg"><span class="dot" style="background:transparent;border:2px dashed #f0a"></span>Bumped (luxury tax)</span>'
- +'<span class="lg"><span class="dot" style="background:#2a1a1a;border:1px solid #5a2a2e"></span>Pick traded away</span>'
- +'<span class="lg"><span class="dot" style="background:#0e2a20;border:1px solid #1c5640"></span>Extra pick acquired</span>';
-
-// ---------- BOARD ----------
-let bh='<tr><th></th>';
-for(let s=1;s<=N;s++){const t=byslot[s];
- bh+='<th><span class="sl">'+s+'</span><span class="tm">'+(t?t.name:'open')+'</span></th>';}
-bh+='</tr>';
-for(let r=1;r<=R;r++){
- bh+='<tr><td class="rdlbl">R'+r+'</td>';
- for(let s=1;s<=N;s++){
-   const t=byslot[s];
-   const pickNo=(r-1)*N+(r%2===1?s:(N-s+1));
-   const label=r+'.'+String(r%2===1?s:(N-s+1)).padStart(2,'0');
-   let k=null; if(t) k=(t.keepers||[]).find(x=>x.round===r)||null;
-   if(k){
-     bh+='<td class="keeper'+(k.bumped?' bumped':'')+'"><div class="cell">'+
-       '<span class="pk">'+label+'</span>'+
-       '<span class="nm" style="color:'+posColor(k.pos)+'">'+k.player+'</span>'+
-       '<span class="meta">'+k.pos+(k.nfl?' · '+k.nfl:'')+(k.bumped?' · $'+tax(taxRd(k)):'')+'</span></div></td>';
-   } else {
-     const owned=(typeof PICKS_2026!=='undefined'&&t&&PICKS_2026[t.id])?PICKS_2026[t.id].filter(x=>x===r).length:1;
-     if(t&&owned===0){
-       bh+='<td class="traded"><div class="cell"><span class="pk">'+label+'</span><span class="tradedtag">traded</span></div></td>';
-     } else if(t&&owned>1){
-       bh+='<td class="extra"><div class="cell"><span class="pk">'+label+'</span><span class="extratag">+'+(owned-1)+' extra</span></div></td>';
-     } else {
-       bh+='<td><div class="cell"><span class="pk">'+label+'</span></div></td>';
-     }
-   }
- }
- bh+='</tr>';
-}
-document.getElementById('board').innerHTML=bh;
 
 // ---------- CARDS ----------
 const withK=T.filter(t=>(t.keepers||[]).length>0);
