@@ -5,7 +5,7 @@
 // ============================================================
 const DATA = {
   season: 2026,
-  updated: "Aug 22, 5:00 PM CT",
+  updated: "Aug 23, 8:00 AM CT",
   draftDate: "Saturday, Aug 29",
   buyIn: 250,
 
@@ -70,7 +70,13 @@ const DATA = {
         { player:"DJ Moore",     pos:"WR", nfl:"BUF", round:5, bumped:false, discount:false }, // drafted R4 2025 by Josh James; ECR 50 = R5 cheaper
         { player:"Tyler Warren", pos:"TE", nfl:"IND", round:6, bumped:true,  origin:5,  discount:false }  // drafted R4 2025 by Reid; ECR 52 = R5, bumped off DJ Moore
       ]},
-    { id:"tf",      name:"Alphabet Army",         owner:"Travis Farmer", slot:10, paid:false, insurance:false, carryover:8, keepers:[] },
+    { id:"tf", name:"Alphabet Army", owner:"Travis Farmer", slot:10, paid:false, insurance:false, carryover:8,
+      keepers:[
+        { player:"Justin Jefferson", pos:"WR", nfl:"MIN", round:1, bumped:false, discount:false }, // kept 2025 by Farmer -> ECR 8 = R1
+        { player:"Josh Allen",       pos:"QB", nfl:"BUF", round:3, bumped:false, discount:false }, // kept 2025 by Farmer -> ECR 27 = R3
+        { player:"Jaylen Waddle",    pos:"WR", nfl:"MIA", round:5, bumped:false, discount:true  }, // drafted R5 2025 by Jeremy. ECR R3 -> 2-rd discount
+        { player:"D'Andre Swift",    pos:"RB", nfl:"CHI", round:6, bumped:true,  origin:5, discount:false } // drafted R3 by Farmer; ECR 57 = R5 cheaper, bumped off Waddle
+      ]},
     { id:"ry", name:"Breece for Anal Impact", owner:"Ryan Anderson", slot:9, paid:false, insurance:true, carryover:150,
       keepers:[
         { player:"Drake London",   pos:"WR", nfl:"ATL", round:1, bumped:false, discount:false }, // kept 2025 by Ryan -> ECR 10 = R1
@@ -92,7 +98,7 @@ const DATA = {
         { player:"George Kittle", pos:"TE", nfl:"SF",  round:8, bumped:false, discount:false }, // kept 2025 -> ECR 96 = R8
         { player:"Dak Prescott",  pos:"QB", nfl:"DAL", round:9, bumped:false, discount:true  }  // drafted R9 2025 by Jeremy. ECR R7 -> 2-rd discount
       ]},
-    { id:"ju", name:"Collusion", owner:"Justin Bjorgo", slot:null, paid:false, insurance:false, carryover:194,
+    { id:"ju", name:"Collusion", owner:"Justin Bjorgo", slot:7, paid:false, insurance:false, carryover:194,
       keepers:[
         { player:"Ashton Jeanty",     pos:"RB", nfl:"LV",  round:1, bumped:false, discount:false }, // drafted R1 2025 by Justin; takes drafted round to clear the R2 pileup
         { player:"James Cook III",    pos:"RB", nfl:"BUF", round:2, bumped:false, discount:false }, // kept 2025 by Justin -> ECR 17 = R2
