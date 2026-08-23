@@ -16,6 +16,8 @@ h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(34px,6vw,60px);line
 h2{font-family:'Barlow Condensed',sans-serif;font-size:27px;text-transform:uppercase;letter-spacing:.05em;margin:34px 0 12px;color:var(--tx);display:flex;align-items:center;gap:11px;flex-wrap:wrap}
 h2 .note{font-family:Inter,sans-serif;font-size:13px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--dim)}
 .badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:4px 9px;border-radius:99px;background:#2b2233;color:#e0b3ff;border:1px solid #4b3a5c}
+.mocklink{display:inline-block;float:right;font-size:13px;font-weight:800;letter-spacing:.03em;color:var(--accent);text-decoration:none;background:#0d1f24;border:1px solid #1c4b56;padding:7px 13px;border-radius:8px;margin-top:-4px}
+.mocklink:hover{background:#123039}
 /* POT */
 .pot{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:20px 22px;margin-top:20px}
 .potgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px}
@@ -107,7 +109,7 @@ td.extra{background:#0d1f18}
 <div class="wrap">
   <div class="eyebrow">F The Raiders &nbsp;·&nbsp; <span id="season"></span> Season</div>
   <h1>Keepers &amp; Draft Board</h1>
-  <div class="sub">Draft <b id="ddate"></b> &nbsp;·&nbsp; Updated <b id="upd"></b> &nbsp;·&nbsp; <span id="declared"></span></div>
+  <div class="sub"><a class="mocklink" href="mock.html">Run a mock draft &#8594;</a>Draft <b id="ddate"></b> &nbsp;·&nbsp; Updated <b id="upd"></b> &nbsp;·&nbsp; <span id="declared"></span></div>
 
   <h2>The Pot <span id="ratesbadge"></span></h2>
   <div class="pot"><div class="potgrid" id="potgrid"></div></div>
