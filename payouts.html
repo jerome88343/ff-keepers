@@ -30,6 +30,26 @@ td.o2{background:#191428;color:var(--b)}
 td .d{display:block;font-size:11px;font-weight:700;color:var(--dim2);margin-top:1px}
 tr.tot td{border-top:2px solid var(--line);background:var(--panel2);font-size:17px;font-weight:800}
 tr.tot td.o1{background:#221d13}tr.tot td.o2{background:#1f1832}
+tr.locked td:first-child{color:var(--tx)}
+.lockpill{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#34d399;background:#0d1f18;border:1px solid #1c5640;padding:2px 6px;border-radius:99px;margin-left:7px;vertical-align:1px}
+td.win{box-shadow:inset 3px 0 0 #34d399}
+td.dead{opacity:.34}
+.status{background:var(--panel);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.srow{display:flex;align-items:center;gap:12px;padding:11px 16px;border-top:1px solid var(--line2);font-size:14px;flex-wrap:wrap}
+.srow:first-child{border-top:none}
+.tick{width:18px;text-align:center;font-weight:800}
+.srow.done .tick{color:#34d399}
+.srow.open .tick{color:var(--dim2)}
+.srow.open{color:var(--dim)}
+.sname{font-weight:700;min-width:210px}
+.sval{font-weight:800;font-variant-numeric:tabular-nums}
+.swhen{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--dim2);letter-spacing:.04em;text-transform:uppercase}
+.remain{display:flex;gap:26px;flex-wrap:wrap;background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:16px 20px;margin-top:14px}
+.remain div{display:flex;flex-direction:column;gap:2px}
+.rk{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--dim);font-weight:800}
+.rv{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
+.remain .big .rv{color:var(--a);font-size:30px}
+.rnote{font-size:14px;line-height:1.6;color:#b9c3d1;margin-top:12px}
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
 @media(max-width:760px){.cards{grid-template-columns:1fr}}
 .card{border-radius:13px;padding:18px 20px;border:1px solid}
@@ -67,10 +87,27 @@ tr.tot td.o1{background:#221d13}tr.tot td.o2{background:#1f1832}
 <tr><td>Division winners (3)</td><td class="old">$165</td><td class="o1">$225<span class="d">$75 each</span></td><td class="o2">&#8212;<span class="d">from season pool</span></td></tr>
 <tr><td>Survivor</td><td class="old">$85</td><td class="o1">$100</td><td class="o2">&#8212;<span class="d">from season pool</span></td></tr>
 <tr><td>Season awards pool</td><td class="old">&#8212;</td><td class="o1">&#8212;</td><td class="o2">$485<span class="d">15% · covers the three above</span></td></tr>
-<tr><td>Weekly top score</td><td class="old">$140</td><td class="o1">$210<span class="d">$15/wk</span></td><td class="o2">$243<span class="d">$17.34/wk</span></td></tr>
-<tr><td>Weekly wild card</td><td class="old">$99</td><td class="o1">$210<span class="d">$15/wk</span></td><td class="o2">$243<span class="d">$17.34/wk</span></td></tr>
+<tr class="locked"><td>Weekly top score <span class="lockpill">locked</span></td><td class="old">$140</td><td class="o1 win">$210<span class="d">$15/wk</span></td><td class="o2 dead">$243<span class="d">not taken</span></td></tr>
+<tr class="locked"><td>Weekly wild card <span class="lockpill">locked</span></td><td class="old">$99</td><td class="o1 win">$210<span class="d">$15/wk</span></td><td class="o2 dead">$243<span class="d">not taken</span></td></tr>
 <tr class="tot"><td>Total paid out</td><td class="old">$1,889</td><td class="o1">$2,995<span class="d" style="color:#34d399">$241 to put to use</span></td><td class="o2">$3,236<span class="d" style="color:#34d399">pays out everything</span></td></tr>
 </table>
+
+<h2>Where the vote stands</h2>
+<div class="status">
+  <div class="srow done"><span class="tick">&#10003;</span><span class="sname">Buy-in</span><span class="sval">$250 per team</span><span class="swhen">voted Jan 3</span></div>
+  <div class="srow done"><span class="tick">&#10003;</span><span class="sname">Luxury tax ladder</span><span class="sval">$20 / $18 / $16 / $14 / $12 / $10 / $8 / $8</span><span class="swhen">Option B, passed</span></div>
+  <div class="srow done"><span class="tick">&#10003;</span><span class="sname">Keeper insurance</span><span class="sval">$15</span><span class="swhen">Option B, passed</span></div>
+  <div class="srow done"><span class="tick">&#10003;</span><span class="sname">Weekly top score</span><span class="sval">$15 / week &#183; $210</span><span class="swhen">Option 1, locked</span></div>
+  <div class="srow done"><span class="tick">&#10003;</span><span class="sname">Weekly wild card</span><span class="sval">$15 / week &#183; $210</span><span class="swhen">Option 1, locked</span></div>
+  <div class="srow open"><span class="tick">&#183;</span><span class="sname">1st, 2nd and 3rd</span><span class="sval">open</span><span class="swhen">needs a vote</span></div>
+  <div class="srow open"><span class="tick">&#183;</span><span class="sname">Toilet Bowl, divisions, survivor</span><span class="sval">open</span><span class="swhen">needs a vote</span></div>
+</div>
+<div class="remain">
+  <div><span class="rk">Pot</span><span class="rv">$3,236</span></div>
+  <div><span class="rk">Weekly, locked</span><span class="rv" style="color:#34d399">&#8722; $420</span></div>
+  <div class="big"><span class="rk">Still to allocate</span><span class="rv">$2,816</span></div>
+</div>
+<p class="rnote">Option 1's remaining prizes come to <b>$2,575</b> of that, leaving <b>$241</b> for the league to put to use. Doing the rest by percentage instead would put <b>$2,319</b> into the championship and <b>$497</b> into season awards, with nothing left over.</p>
 
 <div class="cards">
   <div class="card c1"><h3>Option 1 &#183; Fixed Dollar</h3>
