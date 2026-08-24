@@ -34,3 +34,11 @@ Pool Structure:
 Best for: fairness and consistency across different buy-in amounts; prizes scale automatically.
 Tradeoff: you won't know the exact payout dollars until the buy-in total is final (though we can
 estimate).
+
+---
+## DECIDED 2026-08-23 (Jeremy)
+- **Weekly top score: Option 1, $15/week, $210 for the season.**
+- **Weekly wild card: Option 1, $15/week, $210 for the season.**
+- Option 2's percentage treatment of the weekly pool is NOT taken.
+- Leftover money is not a defect: the remainder gets put to use by the league.
+- Still open: 1st / 2nd / 3rd, Toilet Bowl, division winners, survivor.

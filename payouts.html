@@ -50,6 +50,18 @@ td.dead{opacity:.34}
 .rv{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
 .remain .big .rv{color:var(--a);font-size:30px}
 .rnote{font-size:14px;line-height:1.6;color:#b9c3d1;margin-top:12px}
+table.final td.big{font-size:20px;font-weight:800;color:var(--tx)}
+table.final tr.tot td{background:#0d1f24;border-top:2px solid #1c4b56}
+table.final tr.tot td.big{color:var(--a);font-size:23px}
+table.final tr.rem td{background:var(--panel2);font-size:14px}
+table.final tr.rem td.big{font-size:16px;color:#34d399}
+td.pc{color:var(--dim2);font-weight:700;font-size:13px}
+.tagline{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--dim2);background:var(--panel2);border:1px solid var(--line2);padding:2px 6px;border-radius:5px;margin-left:8px;vertical-align:1px}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px;margin-top:14px}
+.why div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:1px}
+.wk{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--dim);font-weight:800}
+.wv{font-size:27px;font-weight:800;color:var(--a);font-variant-numeric:tabular-nums}
+.wn{font-size:12px;color:var(--dim2);font-weight:600}
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
 @media(max-width:760px){.cards{grid-template-columns:1fr}}
 .card{border-radius:13px;padding:18px 20px;border:1px solid}
@@ -66,7 +78,7 @@ td.dead{opacity:.34}
 </style></head><body><div class="wrap">
 <div class="eyebrow">F The Raiders &nbsp;·&nbsp; 2026</div>
 <h1>Payout Structure</h1>
-<div class="sub">Jason's two options exactly as he wrote them, measured against the pot we actually have.</div>
+<div class="sub">Settled for 2026. Jason's original two options are kept below for the record.</div>
 
 <div class="potbar">
   <div><div class="k">This year's pot</div><div class="v">$3,236</div></div>
@@ -77,6 +89,28 @@ td.dead{opacity:.34}
   </div>
 </div>
 
+<h2>The 2026 Structure &#8212; Locked</h2>
+<table class="final">
+<tr><th>Payout</th><th>2026</th><th>2025</th><th>Share of pot</th></tr>
+<tr><td>1st place</td><td class="big">$1,350</td><td class="old">$825</td><td class="pc">41.7%</td></tr>
+<tr><td>2nd place</td><td class="big">$700</td><td class="old">$400</td><td class="pc">21.6%</td></tr>
+<tr><td>3rd place <span class="tagline">buy-in back</span></td><td class="big">$250</td><td class="old">$125</td><td class="pc">7.7%</td></tr>
+<tr><td>Toilet Bowl <span class="tagline">anti-tanking</span></td><td class="big">$175</td><td class="old">$50</td><td class="pc">5.4%</td></tr>
+<tr><td>Division winners <span class="tagline">$75 each</span></td><td class="big">$225</td><td class="old">$165</td><td class="pc">7.0%</td></tr>
+<tr><td>Survivor</td><td class="big">$100</td><td class="old">$85</td><td class="pc">3.1%</td></tr>
+<tr><td>Weekly top score <span class="tagline">$15 &#215; 14</span></td><td class="big">$210</td><td class="old">$140</td><td class="pc">6.5%</td></tr>
+<tr><td>Weekly wild card <span class="tagline">$15 &#215; 14</span></td><td class="big">$210</td><td class="old">$99</td><td class="pc">6.5%</td></tr>
+<tr class="tot"><td>Total paid out</td><td class="big">$3,220</td><td class="old">$1,889</td><td class="pc">99.5%</td></tr>
+<tr class="rem"><td>Remainder for league use</td><td class="big">$16</td><td class="old">&#8212;</td><td class="pc">0.5%</td></tr>
+</table>
+<div class="why">
+  <div><span class="wk">1st is</span><span class="wv">1.93&#215;</span><span class="wn">second place</span></div>
+  <div><span class="wk">Championship</span><span class="wv">71%</span><span class="wn">1st, 2nd and 3rd</span></div>
+  <div><span class="wk">Side pools</span><span class="wv">28%</span><span class="wn">weekly, divisions, survivor, toilet</span></div>
+  <div><span class="wk">Toilet Bowl vs 2025</span><span class="wv">3.5&#215;</span><span class="wn">enough to keep the bottom six playing</span></div>
+</div>
+
+<h2 style="margin-top:40px">How we got here</h2>
 <h2>What each option pays</h2>
 <table>
 <tr><th>Payout</th><th>2025 actual</th><th class="o1">Option 1<span class="tag">Fixed Dollar</span></th><th class="o2">Option 2<span class="tag">Percent of Pot</span></th></tr>
