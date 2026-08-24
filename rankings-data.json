@@ -1,0 +1,695 @@
+[
+ {
+  "name": "Bearded Clams",
+  "owner": "Josh James",
+  "slot": 11,
+  "ks": [
+   {
+    "player": "Alec Pierce",
+    "pos": "WR",
+    "nfl": "IND",
+    "round": 16,
+    "bumped": false,
+    "discount": true,
+    "ecr": 98,
+    "pickNo": 182,
+    "surplus": 84
+   },
+   {
+    "player": "Javonte Williams",
+    "pos": "RB",
+    "nfl": "DAL",
+    "round": 8,
+    "bumped": false,
+    "discount": true,
+    "ecr": 43,
+    "pickNo": 86,
+    "surplus": 43
+   },
+   {
+    "player": "Omarion Hampton",
+    "pos": "RB",
+    "nfl": "LAC",
+    "round": 3,
+    "bumped": false,
+    "discount": false,
+    "ecr": 25,
+    "pickNo": 35,
+    "surplus": 10
+   },
+   {
+    "player": "A.J. Brown",
+    "pos": "WR",
+    "nfl": "NE",
+    "round": 1,
+    "bumped": false,
+    "discount": false,
+    "ecr": 12,
+    "pickNo": 11,
+    "surplus": -1
+   }
+  ],
+  "surplus": 136,
+  "best": 12,
+  "taxPaid": 0,
+  "capital": 314,
+  "talent": 178,
+  "discounts": 2
+ },
+ {
+  "name": "Pink Taco Pluggers",
+  "owner": "Chris Drake",
+  "slot": 5,
+  "ks": [
+   {
+    "player": "Drake Maye",
+    "pos": "QB",
+    "nfl": "NE",
+    "round": 13,
+    "bumped": false,
+    "discount": true,
+    "ecr": 37,
+    "pickNo": 149,
+    "surplus": 112
+   },
+   {
+    "player": "Emeka Egbuka",
+    "pos": "WR",
+    "nfl": "TB",
+    "round": 5,
+    "bumped": false,
+    "discount": true,
+    "ecr": 39,
+    "pickNo": 53,
+    "surplus": 14
+   },
+   {
+    "player": "Jahmyr Gibbs",
+    "pos": "RB",
+    "nfl": "DET",
+    "round": 1,
+    "bumped": false,
+    "discount": false,
+    "ecr": 2,
+    "pickNo": 5,
+    "surplus": 3
+   },
+   {
+    "player": "Trey McBride",
+    "pos": "TE",
+    "nfl": "ARI",
+    "round": 2,
+    "bumped": false,
+    "discount": false,
+    "ecr": 20,
+    "pickNo": 20,
+    "surplus": 0
+   }
+  ],
+  "surplus": 129,
+  "best": 2,
+  "taxPaid": 0,
+  "capital": 227,
+  "talent": 98,
+  "discounts": 2
+ },
+ {
+  "name": "Perennial Losers",
+  "owner": "Travis Briar",
+  "slot": 4,
+  "ks": [
+   {
+    "player": "Colston Loveland",
+    "pos": "TE",
+    "nfl": "CHI",
+    "round": 11,
+    "bumped": false,
+    "discount": true,
+    "ecr": 38,
+    "pickNo": 124,
+    "surplus": 86
+   },
+   {
+    "player": "Quinshon Judkins",
+    "pos": "RB",
+    "nfl": "CLE",
+    "round": 7,
+    "bumped": false,
+    "discount": true,
+    "ecr": 62,
+    "pickNo": 76,
+    "surplus": 14
+   },
+   {
+    "player": "Christian McCaffrey",
+    "pos": "RB",
+    "nfl": "SF",
+    "round": 2,
+    "bumped": true,
+    "origin": 1,
+    "discount": false,
+    "ecr": 9,
+    "pickNo": 21,
+    "surplus": 12
+   },
+   {
+    "player": "Ja'Marr Chase",
+    "pos": "WR",
+    "nfl": "CIN",
+    "round": 1,
+    "bumped": false,
+    "discount": false,
+    "ecr": 1,
+    "pickNo": 4,
+    "surplus": 3
+   }
+  ],
+  "surplus": 115,
+  "best": 1,
+  "taxPaid": 20,
+  "capital": 225,
+  "talent": 110,
+  "discounts": 2
+ },
+ {
+  "name": "Phildo's Dildos",
+  "owner": "Phil Arreguin",
+  "slot": 12,
+  "ks": [
+   {
+    "player": "Luther Burden III",
+    "pos": "WR",
+    "nfl": "CHI",
+    "round": 11,
+    "bumped": false,
+    "discount": true,
+    "ecr": 47,
+    "pickNo": 132,
+    "surplus": 85
+   },
+   {
+    "player": "Malik Nabers",
+    "pos": "WR",
+    "nfl": "NYG",
+    "round": 3,
+    "bumped": true,
+    "origin": 2,
+    "discount": false,
+    "ecr": 24,
+    "pickNo": 36,
+    "surplus": 12
+   },
+   {
+    "player": "Puka Nacua",
+    "pos": "WR",
+    "nfl": "LAR",
+    "round": 1,
+    "bumped": false,
+    "discount": false,
+    "ecr": 3,
+    "pickNo": 12,
+    "surplus": 9
+   },
+   {
+    "player": "Jonathan Taylor",
+    "pos": "RB",
+    "nfl": "IND",
+    "round": 2,
+    "bumped": true,
+    "origin": 1,
+    "discount": false,
+    "ecr": 11,
+    "pickNo": 13,
+    "surplus": 2
+   }
+  ],
+  "surplus": 108,
+  "best": 3,
+  "taxPaid": 38,
+  "capital": 193,
+  "talent": 85,
+  "discounts": 1
+ },
+ {
+  "name": "My Couch Pulls Out, But I Don't.",
+  "owner": "Jason Brownlee",
+  "slot": 8,
+  "ks": [
+   {
+    "player": "Chris Olave",
+    "pos": "WR",
+    "nfl": "NO",
+    "round": 7,
+    "bumped": false,
+    "discount": true,
+    "ecr": 18,
+    "pickNo": 80,
+    "surplus": 62
+   },
+   {
+    "player": "Amon-Ra St. Brown",
+    "pos": "WR",
+    "nfl": "DET",
+    "round": 2,
+    "bumped": true,
+    "origin": 1,
+    "discount": false,
+    "ecr": 6,
+    "pickNo": 17,
+    "surplus": 11
+   },
+   {
+    "player": "Bijan Robinson",
+    "pos": "RB",
+    "nfl": "ATL",
+    "round": 1,
+    "bumped": false,
+    "discount": false,
+    "ecr": 4,
+    "pickNo": 8,
+    "surplus": 4
+   },
+   {
+    "player": "Kenneth Walker III",
+    "pos": "RB",
+    "nfl": "SEA",
+    "round": 3,
+    "bumped": false,
+    "discount": false,
+    "ecr": 28,
+    "pickNo": 32,
+    "surplus": 4
+   }
+  ],
+  "surplus": 81,
+  "best": 4,
+  "taxPaid": 20,
+  "capital": 137,
+  "talent": 56,
+  "discounts": 1
+ },
+ {
+  "name": "Breece for Anal Impact",
+  "owner": "Ryan Anderson",
+  "slot": 9,
+  "ks": [
+   {
+    "player": "George Pickens",
+    "pos": "WR",
+    "nfl": "DAL",
+    "round": 6,
+    "bumped": false,
+    "discount": true,
+    "ecr": 19,
+    "pickNo": 64,
+    "surplus": 45
+   },
+   {
+    "player": "Saquon Barkley",
+    "pos": "RB",
+    "nfl": "PHI",
+    "round": 3,
+    "bumped": false,
+    "discount": false,
+    "ecr": 26,
+    "pickNo": 33,
+    "surplus": 7
+   },
+   {
+    "player": "Breece Hall",
+    "pos": "RB",
+    "nfl": "NYJ",
+    "round": 4,
+    "bumped": false,
+    "discount": false,
+    "ecr": 40,
+    "pickNo": 40,
+    "surplus": 0
+   },
+   {
+    "player": "Drake London",
+    "pos": "WR",
+    "nfl": "ATL",
+    "round": 1,
+    "bumped": false,
+    "discount": false,
+    "ecr": 10,
+    "pickNo": 9,
+    "surplus": -1
+   }
+  ],
+  "surplus": 51,
+  "best": 10,
+  "taxPaid": 0,
+  "capital": 146,
+  "talent": 95,
+  "discounts": 1
+ },
+ {
+  "name": "Alphabet Army",
+  "owner": "Travis Farmer",
+  "slot": 10,
+  "ks": [
+   {
+    "player": "Jaylen Waddle",
+    "pos": "WR",
+    "nfl": "MIA",
+    "round": 5,
+    "bumped": false,
+    "discount": true,
+    "ecr": 33,
+    "pickNo": 58,
+    "surplus": 25
+   },
+   {
+    "player": "Josh Allen",
+    "pos": "QB",
+    "nfl": "BUF",
+    "round": 3,
+    "bumped": false,
+    "discount": false,
+    "ecr": 27,
+    "pickNo": 34,
+    "surplus": 7
+   },
+   {
+    "player": "D'Andre Swift",
+    "pos": "RB",
+    "nfl": "CHI",
+    "round": 6,
+    "bumped": true,
+    "origin": 5,
+    "discount": false,
+    "ecr": 57,
+    "pickNo": 63,
+    "surplus": 6
+   },
+   {
+    "player": "Justin Jefferson",
+    "pos": "WR",
+    "nfl": "MIN",
+    "round": 1,
+    "bumped": false,
+    "discount": false,
+    "ecr": 8,
+    "pickNo": 10,
+    "surplus": 2
+   }
+  ],
+  "surplus": 40,
+  "best": 8,
+  "taxPaid": 12,
+  "capital": 165,
+  "talent": 125,
+  "discounts": 1
+ },
+ {
+  "name": "Rainbow Pride",
+  "owner": "Reid Farmer",
+  "slot": 2,
+  "ks": [
+   {
+    "player": "Tyler Warren",
+    "pos": "TE",
+    "nfl": "IND",
+    "round": 6,
+    "bumped": true,
+    "origin": 5,
+    "discount": false,
+    "ecr": 52,
+    "pickNo": 71,
+    "surplus": 19
+   },
+   {
+    "player": "Brock Bowers",
+    "pos": "TE",
+    "nfl": "LV",
+    "round": 3,
+    "bumped": true,
+    "origin": 2,
+    "discount": false,
+    "ecr": 16,
+    "pickNo": 26,
+    "surplus": 10
+   },
+   {
+    "player": "Chase Brown",
+    "pos": "RB",
+    "nfl": "CIN",
+    "round": 2,
+    "bumped": false,
+    "discount": false,
+    "ecr": 15,
+    "pickNo": 23,
+    "surplus": 8
+   },
+   {
+    "player": "DJ Moore",
+    "pos": "WR",
+    "nfl": "BUF",
+    "round": 5,
+    "bumped": false,
+    "discount": false,
+    "ecr": 50,
+    "pickNo": 50,
+    "surplus": 0
+   }
+  ],
+  "surplus": 37,
+  "best": 15,
+  "taxPaid": 30,
+  "capital": 170,
+  "talent": 133,
+  "discounts": 0
+ },
+ {
+  "name": "Jerome Mahomes",
+  "owner": "Jeremy Brownlee",
+  "slot": 3,
+  "ks": [
+   {
+    "player": "Travis Etienne Jr.",
+    "pos": "RB",
+    "nfl": "NO",
+    "round": 6,
+    "bumped": false,
+    "discount": true,
+    "ecr": 48,
+    "pickNo": 70,
+    "surplus": 22
+   },
+   {
+    "player": "David Montgomery",
+    "pos": "RB",
+    "nfl": "HOU",
+    "round": 7,
+    "bumped": true,
+    "origin": 6,
+    "discount": false,
+    "ecr": 61,
+    "pickNo": 75,
+    "surplus": 14
+   },
+   {
+    "player": "Rashee Rice",
+    "pos": "WR",
+    "nfl": "KC",
+    "round": 2,
+    "bumped": false,
+    "discount": false,
+    "ecr": 22,
+    "pickNo": 22,
+    "surplus": 0
+   },
+   {
+    "player": "Jaxon Smith-Njigba",
+    "pos": "WR",
+    "nfl": "SEA",
+    "round": 1,
+    "bumped": false,
+    "discount": false,
+    "ecr": 5,
+    "pickNo": 3,
+    "surplus": -2
+   }
+  ],
+  "surplus": 34,
+  "best": 5,
+  "taxPaid": 10,
+  "capital": 170,
+  "talent": 136,
+  "discounts": 1
+ },
+ {
+  "name": "LaFlama Blanca",
+  "owner": "Chad Nicols",
+  "slot": 1,
+  "ks": [
+   {
+    "player": "Zay Flowers",
+    "pos": "WR",
+    "nfl": "BAL",
+    "round": 5,
+    "bumped": false,
+    "discount": true,
+    "ecr": 29,
+    "pickNo": 49,
+    "surplus": 20
+   },
+   {
+    "player": "Rome Odunze",
+    "pos": "WR",
+    "nfl": "CHI",
+    "round": 6,
+    "bumped": false,
+    "discount": true,
+    "ecr": 56,
+    "pickNo": 72,
+    "surplus": 16
+   },
+   {
+    "player": "Josh Jacobs",
+    "pos": "RB",
+    "nfl": "GB",
+    "round": 4,
+    "bumped": false,
+    "discount": false,
+    "ecr": 44,
+    "pickNo": 48,
+    "surplus": 4
+   },
+   {
+    "player": "Derrick Henry",
+    "pos": "RB",
+    "nfl": "BAL",
+    "round": 3,
+    "bumped": false,
+    "discount": false,
+    "ecr": 36,
+    "pickNo": 25,
+    "surplus": -11
+   }
+  ],
+  "surplus": 29,
+  "best": 29,
+  "taxPaid": 0,
+  "capital": 194,
+  "talent": 165,
+  "discounts": 2
+ },
+ {
+  "name": "$Test Tube Daddy$",
+  "owner": "Josh Lennon",
+  "slot": 6,
+  "ks": [
+   {
+    "player": "Dak Prescott",
+    "pos": "QB",
+    "nfl": "DAL",
+    "round": 9,
+    "bumped": false,
+    "discount": true,
+    "ecr": 78,
+    "pickNo": 102,
+    "surplus": 24
+   },
+   {
+    "player": "CeeDee Lamb",
+    "pos": "WR",
+    "nfl": "DAL",
+    "round": 1,
+    "bumped": false,
+    "discount": false,
+    "ecr": 7,
+    "pickNo": 6,
+    "surplus": -1
+   },
+   {
+    "player": "De'Von Achane",
+    "pos": "RB",
+    "nfl": "MIA",
+    "round": 2,
+    "bumped": false,
+    "discount": false,
+    "ecr": 21,
+    "pickNo": 19,
+    "surplus": -2
+   },
+   {
+    "player": "George Kittle",
+    "pos": "TE",
+    "nfl": "SF",
+    "round": 8,
+    "bumped": false,
+    "discount": false,
+    "ecr": 96,
+    "pickNo": 91,
+    "surplus": -5
+   }
+  ],
+  "surplus": 16,
+  "best": 7,
+  "taxPaid": 0,
+  "capital": 218,
+  "talent": 202,
+  "discounts": 1
+ },
+ {
+  "name": "Collusion",
+  "owner": "Justin Bjorgo",
+  "slot": 7,
+  "ks": [
+   {
+    "player": "Ladd McConkey",
+    "pos": "WR",
+    "nfl": "LAC",
+    "round": 4,
+    "bumped": true,
+    "origin": 3,
+    "discount": false,
+    "ecr": 34,
+    "pickNo": 42,
+    "surplus": 8
+   },
+   {
+    "player": "James Cook III",
+    "pos": "RB",
+    "nfl": "BUF",
+    "round": 2,
+    "bumped": false,
+    "discount": false,
+    "ecr": 17,
+    "pickNo": 18,
+    "surplus": 1
+   },
+   {
+    "player": "Tetairoa McMillan",
+    "pos": "WR",
+    "nfl": "CAR",
+    "round": 3,
+    "bumped": false,
+    "discount": false,
+    "ecr": 32,
+    "pickNo": 31,
+    "surplus": -1
+   },
+   {
+    "player": "Ashton Jeanty",
+    "pos": "RB",
+    "nfl": "LV",
+    "round": 1,
+    "bumped": false,
+    "discount": false,
+    "ecr": 14,
+    "pickNo": 7,
+    "surplus": -7
+   }
+  ],
+  "surplus": 1,
+  "best": 14,
+  "taxPaid": 16,
+  "capital": 98,
+  "talent": 97,
+  "discounts": 0
+ }
+]
