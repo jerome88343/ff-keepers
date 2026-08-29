@@ -1,0 +1,152 @@
+
+const D=DRAFT_DATA, ME=D.me;
+const TEAM={}; D.teams.forEach(t=>TEAM[t.id]=t);
+const P={}; D.pool.forEach(p=>P[p.n]=p);
+const IDX={}; D.pool.forEach((p,i)=>IDX[p.n]=i);
+const LIVE=D.draft.filter(s=>!s.keeper);
+let picks=(STATE.picks||[]).map(i=>D.pool[i]).filter(Boolean).map(p=>p.n);
+let AR=null, canWrite=null, busy=false, pane='RB', viewing=ME;
+
+const taken=()=>new Set(picks);
+const cur=()=>LIVE[picks.length]||null;
+const avail=pos=>{const t=taken();return D.pool.filter(p=>p.p===pos&&!t.has(p.n))};
+function seatOf(i){return LIVE[i]}
+function onClock(){const c=cur();return c&&c.tid===ME}
+function untilMe(){const from=picks.length+(onClock()?1:0);
+  const i=LIVE.findIndex((s,ix)=>ix>=from&&s.tid===ME);return i<0?null:i-picks.length}
+function rate(pos,win){const last=picks.slice(-win);if(!last.length)return null;
+  return last.filter(n=>P[n]&&P[n].p===pos).length/last.length}
+function tierBreak(list){let bi=-1,bg=0;
+  for(let i=0;i<Math.min(list.length-1,11);i++){const g=list[i+1].r-list[i].r;if(g>bg){bg=g;bi=i}}
+  return bg>=12?bi:-1}
+function rosterOf(tid){const t=TEAM[tid],out={QB:[],RB:[],WR:[],TE:[],K:[],DST:[]};
+  t.k.forEach(k=>out[k.p]&&out[k.p].push({n:k.n,r:'R'+k.r,keep:true}));
+  picks.forEach((n,i)=>{const s=seatOf(i);if(s&&s.tid===tid){const pl=P[n];if(pl&&out[pl.p])out[pl.p].push({n:n,r:'R'+s.r,keep:false})}});
+  return out}
+function needs(tid){const r=rosterOf(tid),n=[];
+  if(r.QB.length<1)n.push('QB');if(r.RB.length<3)n.push('RB');if(r.WR.length<3)n.push('WR');if(r.TE.length<1)n.push('TE');return n}
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+
+function posCol(pos){
+  const list=avail(pos),u=untilMe(),r=rate(pos,10),rAll=rate(pos,999);
+  const use=r===null?null:(r*0.65+(rAll||0)*0.35);
+  const exp=(u===null||use===null)?null:Math.round(u*use);
+  const tb=tierBreak(list),inTier=tb<0?list.length:tb+1,up=onClock();
+  let w='',cls='ok';
+  if(exp!==null&&u!==null){
+    const lead=up?`If you pass now, about ${exp}`:`About ${exp}`, tail=up?'before you pick again':'before your next pick';
+    if(tb>=0&&exp>=inTier){cls='hot';w=`${up?'TAKE ONE NOW. ':'RUN RISK. '}${lead} ${pos}s go ${tail} and only ${inTier} sit above the cliff.`}
+    else if(tb>=0&&exp>=inTier-2){cls='mid';w=`Tight. ${lead} ${pos}s go ${tail}, ${inTier} left in this tier.`}
+    else w=`${lead} ${pos}s go ${tail}. ${inTier} in the top tier.`;
+  } else w=`${list.length} available.`;
+  let h=`<div class="ch"><span class="nm">${pos}</span><span class="ct">${list.length} left</span></div><div class="warn ${cls}">${w}</div><ul>`;
+  list.slice(0,26).forEach((p,i)=>{
+    if(i===tb+1&&tb>=0)h+='<div class="cliff">tier drop</div>';
+    const rk=p.rk===26?'<span class="rk r26">RK</span>':p.rk===25?'<span class="rk r25">2YR</span>':'';
+    h+=`<li data-n="${esc(p.n)}"><span class="n">${esc(p.n)}</span>${rk}<span class="tm">${p.t}</span><span class="e">${p.r}</span></li>`});
+  return h+'</ul>'}
+
+function render(){
+  const c=cur(),root=document.getElementById('root');
+  const ro=canWrite===false;
+  let h='<div class="wrap">';
+  h+=`<div class="top"><h1>Draft Room</h1>
+    <div style="position:relative"><input id="search" placeholder="Type a player, Enter to log the pick" autocomplete="off" ${ro?'disabled':''}><div id="sugg" class="sugg" hidden></div></div>
+    <span class="spacer"></span>
+    <span class="live ${canWrite===true?'on':ro?'ro':''}"><span class="dot"></span>${canWrite===true?(busy?'Saving':'Shared live'):ro?'View only':'Connecting'}</span>
+    ${ro?'':'<button class="btn" id="undo">Undo</button><button class="btn danger" id="reset">Reset</button>'}</div>`;
+  if(ro)h+='<div class="banner">You are viewing this board, not editing it. Whoever is entering picks will update it and your screen refreshes on its own. Ask Jeremy for edit access if you need to log picks.</div>';
+  if(!c)h+='<div class="clock"><div class="cell"><div class="k">Draft complete</div><div class="v">All 144 picks are in.</div></div></div>';
+  else{const u=untilMe(),mine=c.tid===ME;
+    h+=`<div class="clock${mine?' mine':''}">
+      <div class="cell"><div class="k">On the clock</div><div class="v"><em>${esc(TEAM[c.tid].name)}</em></div></div>
+      <div class="cell"><div class="k">Pick</div><div class="v">#${c.ovr} &middot; R${c.r}</div></div>
+      <div class="cell"><div class="k">Made</div><div class="v">${picks.length} / 144</div></div>
+      <div class="cell"><div class="k">Jeremy picks</div><div class="v">${mine?'<em>UP NOW</em>':(u===null?'done':'in '+u)}</div></div>
+      <div class="cell"><div class="k">They still need</div><div class="v" style="font-size:19px">${needs(c.tid).join(' ')||'nothing'}</div></div></div>`}
+  h+=`<div class="tabs" id="tabs">${['RB','WR','TE','QB','OTHER','TEAMS','LOG'].map(p=>`<button data-p="${p}" class="${pane===p?'on':''}">${p==='OTHER'?'K / DST':p==='TEAMS'?'Teams':p==='LOG'?'Log':p}</button>`).join('')}</div><div class="cols">`;
+  ['QB','RB','WR','TE'].forEach(p=>h+=`<div class="col pane ${pane===p?'on':''}" data-pane="${p}">${posCol(p)}</div>`);
+  h+='<div class="side">';
+  h+=`<div class="col pane ${pane==='TEAMS'?'on':''}" data-pane="TEAMS"><div class="ch"><span class="nm">Teams</span><span class="ct">tap to view</span></div>`+
+     D.teams.slice().sort((a,b)=>a.slot-b.slot).map(t=>`<div class="trow ${viewing===t.id?'on':''} ${t.id===ME?'me':''}" data-t="${t.id}">${t.slot}. ${esc(t.name)}<span class="need">${needs(t.id).join(' ')||'set'}</span></div>`).join('')+'</div>';
+  const r=rosterOf(viewing);
+  h+=`<div class="col pane ${pane==='TEAMS'?'on':''}" data-pane="TEAMS"><div class="ch"><span class="nm">${esc(TEAM[viewing].owner)}</span></div><div class="rost">`+
+     ['QB','RB','WR','TE','K','DST'].map(pos=>{const l=r[pos];
+       if(!l.length)return `<div class="g"><div class="gl">${pos}</div><div class="empty">none</div></div>`;
+       return `<div class="g"><div class="gl">${pos}</div>`+l.map(x=>`<div class="p">${esc(x.n)}${x.keep?'<span class="kk">K</span>':''}<span class="rr">${x.r}</span></div>`).join('')+'</div>'}).join('')+'</div></div>';
+  h+=`<div class="col pane ${pane==='LOG'?'on':''}" data-pane="LOG"><div class="ch"><span class="nm">Pick Log</span></div><div class="log">`+
+     (picks.slice().reverse().slice(0,14).map((n,i)=>{const s=seatOf(picks.length-1-i);
+       return `<div class="${s&&s.tid===ME?'me':''}"><span class="o">#${s?s.ovr:''}</span>${esc(n)}<span class="t">${s?esc(TEAM[s.tid].name.slice(0,16)):''}</span></div>`}).join('')||'<div class="hint">No picks logged yet.</div>')+'</div></div>';
+  const t=taken();
+  h+=`<div class="col pane ${pane==='OTHER'?'on':''}" data-pane="OTHER"><div class="ch"><span class="nm">K / DST</span></div><ul>`+
+     D.pool.filter(p=>(p.p==='K'||p.p==='DST')&&!t.has(p.n)).slice(0,12).map(p=>`<li data-n="${esc(p.n)}"><span class="n">${esc(p.n)}</span><span class="tm">${p.p}</span><span class="e">${p.r}</span></li>`).join('')+'</ul></div>';
+  h+='</div></div>';
+  h+='<div class="hint">Tap a player to log him to whoever is on the clock. Everyone with the link sees the same board.</div></div>';
+  root.innerHTML=h;
+}
+
+function buildDoc(state){
+  const css=document.getElementById('css').textContent;
+  const app=document.getElementById('app').textContent;
+  const data=document.getElementById('data').textContent;
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+    +'<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
+    +'<meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#0d0f13">'
+    +'<title>F The Raiders Draft Room</title>'
+    +'<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+    +'<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">'
+    +'<style id="css">'+css+'</style></head><body><div id="root"></div>'
+    +'<script id="data" type="application/json">'+data+'<\/script>'
+    +'<script id="state" type="application/json">'+JSON.stringify(state)+'<\/script>'
+    +'<script id="app" type="text/plain">'+app+'<\/script>'
+    +'<script>(function(){var d=document;window.DRAFT_DATA=JSON.parse(d.getElementById("data").textContent);'
+    +'window.STATE=JSON.parse(d.getElementById("state").textContent);'
+    +'(new Function(d.getElementById("app").textContent))()})();<\/script></body></html>';
+}
+
+async function commit(){
+  if(!AR||busy)return; busy=true; render();
+  try{ await AR.publish(buildDoc({picks:picks.map(n=>IDX[n])})); }
+  catch(e){
+    const c=(e&&e.code)||'';
+    if(c==='conflict'){ /* another device published first; this view reloads to the winner */ }
+    else if(c==='not_granted'||c==='not_writer'){ canWrite=false; }
+    else { alert('That pick did not save. Check your connection and try again.'); picks.pop(); }
+  }
+  busy=false; render();
+}
+
+function pick(name){
+  if(canWrite===false)return;
+  const c=cur(); if(!c||!P[name]||taken().has(name))return;
+  picks.push(name); render(); commit();
+}
+
+document.addEventListener('click',e=>{
+  const b=e.target.closest('#tabs button[data-p]'); if(b){pane=b.dataset.p;render();window.scrollTo({top:0});return}
+  const li=e.target.closest('li[data-n]'); if(li){pick(li.dataset.n);return}
+  const tr=e.target.closest('.trow[data-t]'); if(tr){viewing=tr.dataset.t;render();return}
+  if(e.target.id==='undo'){if(picks.length){picks.pop();render();commit()}return}
+  if(e.target.id==='reset'){if(confirm('Clear every logged pick for everyone?')){picks=[];render();commit()}return}
+  const sg=document.getElementById('sugg'); if(sg&&!e.target.closest('#search')&&!e.target.closest('#sugg'))sg.hidden=true;
+});
+
+let si=0;
+function matches(){const sb=document.getElementById('search');if(!sb)return[];
+  const q=sb.value.trim().toLowerCase(); if(q.length<2)return[];
+  const t=taken(); return D.pool.filter(p=>!t.has(p.n)&&p.n.toLowerCase().includes(q)).slice(0,9)}
+function drawSugg(){const sg=document.getElementById('sugg'),m=matches();
+  if(!m.length){sg.hidden=true;return} si=Math.min(si,m.length-1);
+  sg.innerHTML=m.map((p,i)=>`<div class="${i===si?'sel':''}" data-n="${esc(p.n)}">${esc(p.n)} <span style="color:var(--dim2);font-size:11px">${p.p} ${p.t}</span><span class="e">${p.r}</span></div>`).join('');
+  sg.hidden=false}
+document.addEventListener('input',e=>{if(e.target.id==='search'){si=0;drawSugg()}});
+document.addEventListener('keydown',e=>{if(e.target.id!=='search')return; const m=matches();
+  if(e.key==='ArrowDown'){si=Math.min(si+1,m.length-1);drawSugg();e.preventDefault()}
+  else if(e.key==='ArrowUp'){si=Math.max(si-1,0);drawSugg();e.preventDefault()}
+  else if(e.key==='Enter'&&m[si]){pick(m[si].n);e.target.value='';document.getElementById('sugg').hidden=true;e.preventDefault()}
+  else if(e.key==='Escape')document.getElementById('sugg').hidden=true});
+document.addEventListener('click',e=>{const d=e.target.closest('#sugg div[data-n]');
+  if(d){pick(d.dataset.n);const sb=document.getElementById('search');if(sb)sb.value='';document.getElementById('sugg').hidden=true}});
+
+render();
+(async()=>{ try{ AR=await claude.use('artifact'); canWrite=AR?null:false; }catch(e){ AR=null;canWrite=false } render(); })();

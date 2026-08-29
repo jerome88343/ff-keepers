@@ -39,8 +39,12 @@ h1{font-family:'Barlow Condensed',sans-serif;font-size:30px;text-transform:upper
 .sugg div:hover,.sugg div.sel{background:#0d1f24}
 .sugg .e{margin-left:auto;color:var(--dim2);font-size:12px;font-weight:700}
 
-.cols{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 300px;gap:10px;align-items:start}
-@media(max-width:1500px){.cols{grid-template-columns:1fr 1fr 1fr}}
+.cols{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 280px;gap:10px;align-items:start}
+.pp{font-size:8.5px;font-weight:800;letter-spacing:.06em;padding:2px 5px;border-radius:4px;flex-shrink:0;min-width:26px;text-align:center}
+.pp.RB{background:#2a1520;color:#f9a8d4}.pp.WR{background:#12203a;color:#93c5fd}.pp.TE{background:#0d2420;color:#6ee7b7}
+.mix{display:flex;gap:10px;font-size:11.5px;font-weight:800;align-items:center;flex-wrap:wrap}
+.mix b{font-variant-numeric:tabular-nums;font-size:13px}
+@media(max-width:1640px){.cols{grid-template-columns:1fr 1fr 1fr}}
 @media(max-width:1100px){.cols{grid-template-columns:1fr 1fr}}
 @media(max-width:720px){.cols{grid-template-columns:1fr;gap:8px}}
 
@@ -122,11 +126,12 @@ li.tier{border-top:2px solid var(--r);position:relative}
 
 <div class="clock" id="clock"></div>
 <div class="tabs" id="tabs">
-  <button data-p="RB">RB</button><button data-p="WR">WR</button><button data-p="TE">TE</button>
+  <button data-p="FLEX">Flex</button><button data-p="RB">RB</button><button data-p="WR">WR</button><button data-p="TE">TE</button>
   <button data-p="QB">QB</button><button data-p="OTHER">K / DST</button>
   <button data-p="TEAMS">Teams</button><button data-p="LOG">Log</button>
 </div>
 <div class="cols">
+  <div class="col pane" data-pane="FLEX" id="cFLEX"></div>
   <div class="col pane" data-pane="QB" id="cQB"></div>
   <div class="col pane" data-pane="RB" id="cRB"></div>
   <div class="col pane" data-pane="WR" id="cWR"></div>
@@ -166,6 +171,19 @@ function tierBreak(list){ // biggest ECR gap inside the top 12 = the cliff
   for(let i=0;i<Math.min(list.length-1,11);i++){const g=list[i+1].r-list[i].r;if(g>bg){bg=g;bi=i}}
   return bg>=12?bi:-1;
 }
+
+function flexCol(){
+  const t=taken();
+  const list=D.pool.filter(p=>(p.p==='RB'||p.p==='WR'||p.p==='TE')&&!t.has(p.n));
+  const top=list.slice(0,12),c={RB:0,WR:0,TE:0};top.forEach(p=>c[p.p]++);
+  const tb=tierBreak(list);
+  let h=`<div class="ch"><span class="nm">Flex</span><span class="ct">${list.length} left</span></div>`;
+  h+=`<div class="warn ok"><div class="mix"><span style="color:var(--dim)">Next 12</span><span style="color:#f9a8d4">RB <b>${c.RB}</b></span><span style="color:#93c5fd">WR <b>${c.WR}</b></span><span style="color:#6ee7b7">TE <b>${c.TE}</b></span></div></div><ul>`;
+  list.slice(0,30).forEach((p,i)=>{
+    if(i===tb+1&&tb>=0)h+='<div class="cliff">tier drop</div>';
+    const rk=p.rk===26?'<span class="rk r26">RK</span>':p.rk===25?'<span class="rk r25">2YR</span>':'';
+    h+=`<li data-n="${p.n.replace(/"/g,'&quot;')}"><span class="pp ${p.p}">${p.p}</span><span class="n">${p.n}</span>${rk}<span class="tm">${p.t}</span><span class="e">${p.r}</span></li>`});
+  return h+'</ul>'}
 
 function posCol(pos){
   const list=avail(pos), u=untilMe(), r=rate(pos,10), rAll=rate(pos,999);
@@ -223,6 +241,7 @@ function render(){
       <div class="cell"><div class="k">They still need</div><div class="v" style="font-size:19px">${needs(c.tid).join(' ')||'nothing'}</div></div>`;
   }
   ['QB','RB','WR','TE'].forEach(p=>document.getElementById('c'+p).innerHTML=posCol(p));
+  document.getElementById('cFLEX').innerHTML=flexCol();
   document.getElementById('cOTHER').innerHTML=otherCol();
 
   document.getElementById('teams').innerHTML=D.teams.slice().sort((a,b)=>a.slot-b.slot).map(t=>
@@ -270,7 +289,7 @@ sb.onkeydown=e=>{const m=matches();
 sg.addEventListener('click',e=>{const d=e.target.closest('div[data-n]');if(d)pick(d.dataset.n)});
 
 // ---- pane switching (phone / iPad portrait) ----
-let pane=localStorage.getItem(KEY+'pane')||'RB';
+let pane=localStorage.getItem(KEY+'pane')||'FLEX';
 function paint(){document.querySelectorAll('.pane').forEach(e=>e.classList.toggle('on',e.dataset.pane===pane));
   document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.p===pane));}
 document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button[data-p]');
