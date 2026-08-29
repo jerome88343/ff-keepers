@@ -14,6 +14,7 @@ const DATA = {
   taxAtOrigin: true,     // tax charged at the round the player ORIGINALLY counts as, not where he lands
   insuranceFee: 15,
   feesIntoPot: true,
+  expenses: 140,        // MFL dues + engraved trophy + draft board & stickers; comes off the top before prizes
 
   rounds: 16,
   teamCount: 12,
